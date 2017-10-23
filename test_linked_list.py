@@ -10,4 +10,5 @@ def test_case_1():
 
 def test_push():
     """Test for push method."""
-    assert LinkedList(1) == 1
+    res = LinkedList()
+    assert res.push(1) == 1
