@@ -1,7 +1,13 @@
 """Test linked list."""
-from linked_list import Linked_list
+from linked_list import LinkedList
 
 
 def test_case_1():
     """test_case_1."""
-    assert type(Linked_list) == '__main__.Linked_list'
+    test = LinkedList()
+    assert test.val == 0
+
+
+def test_push():
+    """Test for push method."""
+    assert LinkedList(1) == 1
