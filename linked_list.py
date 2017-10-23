@@ -7,6 +7,7 @@ class LinkedList(object):
     def __init__(self):
         """On list creation set head to none."""
         self.head = None
+        self.length = 0
 
     def push(self, val):
         """Push a val to the list."""
@@ -17,7 +18,16 @@ class LinkedList(object):
             self.head = temp_node
         else:
             self.head = temp_node
+        self.length += 1
         return temp_node.val
+
+    def size(self):
+        """Return the length of the list."""
+        return self.length
+
+    def __len__(self):
+        """Redifine the built in len function for the list."""
+        return self.length
 
 
 class Node(object):
