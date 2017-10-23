@@ -4,12 +4,19 @@
 class LinkedList(object):
     """Class for a linked list."""
 
-    val = 0
+    def __init__(self):
+        """On list creation set head to none."""
+        self.head = None
 
     def push(self, val):
         """Push a val to the list."""
-        self.val = val
-        return val
+        temp_node = Node(val)
+        if self.head:
+            temp_head = self.head
+            temp_node.next = temp_head
+            self.head = temp_node
+        else:
+            self.head = temp_node
 
 
 class Node(object):
