@@ -50,3 +50,12 @@ def test_display():
     test_list.push(2)
     test_list.push(3)
     assert test_list.display() == '3, 2, 1'
+
+
+def test_str():
+    """test_display."""
+    test_list = LinkedList()
+    test_list.push(1)
+    test_list.push(2)
+    test_list.push(3)
+    assert test_list.__str__() == '3, 2, 1'
