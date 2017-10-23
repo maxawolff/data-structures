@@ -25,6 +25,16 @@ class LinkedList(object):
         """Return the length of the list."""
         return self.length
 
+    def display(self):
+        """Return a tuple list."""
+        thing = ''
+        thing += str(self.head.val)
+        current_node = self.head
+        while current_node.next:
+            thing += ', ' + str(current_node.next.val)
+            current_node = current_node.next
+        return thing
+
     def __len__(self):
         """Redifine the built in len function for the list."""
         return self.length

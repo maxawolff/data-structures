@@ -41,3 +41,12 @@ def test_empty_list_length_with_len():
     """Test size() on empty list using len method."""
     test_list = LinkedList()
     assert len(test_list) == 0
+
+
+def test_display():
+    """test_display."""
+    test_list = LinkedList()
+    test_list.push(1)
+    test_list.push(2)
+    test_list.push(3)
+    assert test_list.display() == '3, 2, 1'
