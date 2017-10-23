@@ -6,7 +6,7 @@ def test_push():
     """Test for push method."""
     res = LinkedList()
     node = res.push(1)
-    assert node == 1
+    assert node == res.head.val
 
 
 def test_node():

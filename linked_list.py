@@ -17,6 +17,7 @@ class LinkedList(object):
             self.head = temp_node
         else:
             self.head = temp_node
+        return temp_node.val
 
 
 class Node(object):
