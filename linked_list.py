@@ -4,10 +4,13 @@
 class LinkedList(object):
     """Class for a linked list."""
 
-    def __init__(self):
+    def __init__(self, iterable=None):
         """On list creation set head to none."""
         self.head = None
         self.length = 0
+        if isinstance(iterable, (str, tuple, list)):
+            for i in iterable:
+                self.push(i)
 
     def push(self, val):
         """Push a val to the list."""
@@ -38,8 +41,10 @@ class LinkedList(object):
         while current:
             if current.next == node:
                 node_to_remove = current.next
+                self.length -= 1
                 current.next = current.next.next
             current = current.next
+
         if node_to_remove is None:
             raise IndexError("Node was not found in list")
 
@@ -57,12 +62,13 @@ class LinkedList(object):
 
     def __str__(self):
         """Return a tuple list."""
-        thing = ''
+        thing = '('
         thing += str(self.head.val)
         current_node = self.head
         while current_node.next:
             thing += ', ' + str(current_node.next.val)
             current_node = current_node.next
+        thing += ')'
         return thing
 
 
