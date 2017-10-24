@@ -23,6 +23,14 @@ class LinkedList(object):
         self.length -= 1
         return val
 
+    def search(self, val):
+        """Search list for given value and return the node."""
+        current = self.head
+        while current:
+            if current.val == val:
+                return current
+            current = current.next
+
     def size(self):
         """Return the length of the list."""
         return self.length

@@ -65,3 +65,11 @@ def test_linked_list_pop_removes_head():
     ll.push(1)
     ll.pop()
     assert ll.head is None
+
+
+def test_linked_list_search_returns_node_if_exists():
+    """Test_linked_list_search_returns_node_if_exists."""
+    ll = LinkedList()
+    ll.push(1)
+    ll.push(2)
+    assert ll.search(1) == ll.head.next
