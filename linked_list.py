@@ -31,6 +31,18 @@ class LinkedList(object):
                 return current
             current = current.next
 
+    def remove(self, node):
+        """Remove a node from the linked list."""
+        current = self.head
+        node_to_remove = None
+        while current:
+            if current.next == node:
+                node_to_remove = current.next
+                current.next = current.next.next
+            current = current.next
+        if node_to_remove is None:
+            raise IndexError("Node was not found in list")
+
     def size(self):
         """Return the length of the list."""
         return self.length

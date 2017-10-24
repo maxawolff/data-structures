@@ -1,5 +1,6 @@
 """Test linked list."""
 from linked_list import LinkedList, Node
+import pytest
 
 
 def test_push():
@@ -73,3 +74,19 @@ def test_linked_list_search_returns_node_if_exists():
     ll.push(1)
     ll.push(2)
     assert ll.search(1) == ll.head.next
+
+
+def test_remove_removes_node():
+    """Test to see if remove removes a given node."""
+    ll = LinkedList()
+    ll.push(1)
+    ll.push(2)
+    ll.remove(ll.head.next)
+    assert ll.head.next is None
+
+
+def test_remove_raises_exception_when_node_not_found():
+    """Test that exception is raised when node isn't found."""
+    with pytest.raises(IndexError):
+        ll = LinkedList()
+        ll.remove(ll.head)
