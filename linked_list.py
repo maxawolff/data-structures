@@ -11,15 +11,17 @@ class LinkedList(object):
 
     def push(self, val):
         """Push a val to the list."""
-        temp_node = Node(val)
-        if self.head:
-            temp_head = self.head
-            temp_node.next = temp_head
-            self.head = temp_node
-        else:
-            self.head = temp_node
+        self.head = Node(val, self.head)
         self.length += 1
-        return temp_node.val
+
+    def pop(self):
+        """Remove the head of the list and return it."""
+        if self.head is None:
+            raise IndexError("List is empty, cannot pop from an empty list")
+        val = self.head
+        self.head = self.head.next
+        self.length -= 1
+        return val
 
     def size(self):
         """Return the length of the list."""
@@ -47,7 +49,7 @@ class LinkedList(object):
 class Node(object):
     """Class for node."""
 
-    def __init__(self, val):
+    def __init__(self, val, next=None):
         """Create a new node."""
         self.val = val
-        self.next = None
+        self.next = next
