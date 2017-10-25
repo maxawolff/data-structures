@@ -44,3 +44,10 @@ def test_length():
     s.push(1)
     s.push(2)
     assert len(s) == 2
+
+
+def test_stack_takes_iterable():
+    """Test that stack can take an iterable."""
+    tlist = [5, 4, 3, 2, 1]
+    s = Stack(tlist)
+    assert s.top.next.val == 2

@@ -12,6 +12,9 @@ class Stack(object):
         self.length = 0
         self._stack = LinkedList()
         self.top = None
+        if isinstance(iterable, (str, tuple, list)):
+            for i in iterable:
+                self.push(i)
 
     def pop(self):
         """Use LinkedList pop method."""
