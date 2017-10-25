@@ -57,4 +57,8 @@ Oct 25 17 1600hrs dll.py
 Oct 25 17 1620hrs node prev pointer
                   Testing
                   README
+
+Oct 25 17 1640hrs dll.pop
+                  Testing
+                  README
 </pre>

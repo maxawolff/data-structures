@@ -21,7 +21,7 @@ class LinkedList(object):
         """Remove the head of the list and return it."""
         if self.head is None:
             raise IndexError("List is empty, cannot pop from an empty list")
-        val = self.head
+        val = self.head.val
         self.head = self.head.next
         self.length -= 1
         return val

@@ -11,6 +11,10 @@ class DLL(LinkedList):
         super(DLL, self).__init__()
         self.tail = None
 
-    def push(self, val):
-        """Add new item to the head of the double linked list."""
-        super(DLL, self).push(val)
+    # def push(self, val):
+    #     """Add new item to the head of the double linked list."""
+    #     super(DLL, self).push(val)
+
+    def pop(self):
+        """Remove and return the head."""
+        return super(DLL, self).pop()

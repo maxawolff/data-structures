@@ -27,3 +27,9 @@ def test_node_has_prev_pointer():
     """Test for node previous pointer."""
     test_node = Node(1)
     assert test_node.prev is None
+
+
+def test_pop_returns_removes_and_returns_head(new_dll):
+    """Test_pop_returns_removes_and_returns_head."""
+    new_dll.push(4)
+    assert new_dll.pop() == 4
