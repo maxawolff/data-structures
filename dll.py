@@ -10,3 +10,7 @@ class DLL(LinkedList):
         """On list creation set tail to none."""
         super(DLL, self).__init__()
         self.tail = None
+
+    def push(self, val):
+        """Add new item to the head of the double linked list."""
+        super(DLL, self).push(val)
