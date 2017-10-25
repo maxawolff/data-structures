@@ -1,7 +1,6 @@
 """Implementation of a stack."""
 
-
-from linked_list import LinkedList, Node
+from linked_list import LinkedList
 
 
 class Stack(object):
