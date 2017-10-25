@@ -2,6 +2,7 @@
 
 import pytest
 from dll import DLL
+from linked_list import Node
 
 
 @pytest.fixture
@@ -20,3 +21,9 @@ def test_push_to_dll(new_dll):
     """Test to for push method."""
     new_dll.push(2)
     assert new_dll.head.val == 2
+
+
+def test_node_has_prev_pointer():
+    """Test for node previous pointer."""
+    test_node = Node(1)
+    assert test_node.prev is None

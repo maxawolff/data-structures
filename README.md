@@ -53,4 +53,8 @@ Oct 24 17 1530hrs stack.py
 Oct 25 17 1600hrs dll.py
                   Testing
                   README
+
+Oct 25 17 1620hrs node prev pointer
+                  Testing
+                  README
 </pre>
