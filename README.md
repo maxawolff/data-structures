@@ -8,7 +8,7 @@
 - Implementing data structures
   - Single linked list
   - Stack
-  
+
 ## Getting Started
 <!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
   You can fork or clone the repository [here](https://github.com/maxawolff/data-structures)
@@ -47,6 +47,10 @@ Oct 24 17 1500hrs search - __len__
                   README
 
 Oct 24 17 1530hrs stack.py
+                  Testing
+                  README
+
+Oct 25 17 1600hrs dll.py
                   Testing
                   README
 </pre>
