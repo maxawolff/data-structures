@@ -12,4 +12,12 @@ def test_stack_init_has_properties():
 
 def test_stack_is_subclass_of_linked_list():
     """Test to see if stack is a subclass of linked list."""
-    assert issubclass(Stack, LinkedList)
+    s = Stack()
+    assert isinstance(s._stack, LinkedList)
+
+
+def test_push_val():
+    """Test that push pushes to the head."""
+    s = Stack()
+    s.push(1)
+    assert s._stack.head.val == 1
