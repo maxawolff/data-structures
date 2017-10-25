@@ -20,4 +20,27 @@ def test_push_val():
     """Test that push pushes to the head."""
     s = Stack()
     s.push(1)
-    assert s._stack.head.val == 1
+    assert s.top.val == 1
+
+
+def test_push_val2():
+    """Test that push pushes to the head."""
+    s = Stack()
+    s.push(1)
+    s.push(2)
+    assert s.top.next.val == 1
+
+
+def test_pop():
+    """Test that pop will remove and return a value."""
+    s = Stack()
+    s.push(1)
+    assert s.pop() == 1
+
+
+def test_length():
+    """Test that the length function is working."""
+    s = Stack()
+    s.push(1)
+    s.push(2)
+    assert len(s) == 2
