@@ -42,41 +42,19 @@ class DLL(LinkedList):
 
     def remove(self, val):
         """Remove selected node."""
-        # if node == self.head.val:
-        #     self.head = node.next
-        # else:
-        #     current = self.head
-        #     node_to_remove = None
-        #     while current:
-        #         if current.next.next is None:
-        #             self.tail = current.next
-        #             current.next is None
-        #         elif current.next.val == node:
-        #             node_to_remove = current.next
-        #             self.length -= 1
-        #             current.next = current.next.next
-        #             if current.prev is None:
-        #                 pass
-        #             else:
-        #                 current.prev = current.prev.prev
-        #         current = current.next
         if not val:
             raise ValueError("No value was given")
 
         if not self.head and not self.tail:
             raise IndexError("List is empty")
         current = self.head
-        if val == current.val:
-            self.head = current.next
-            self.length -= 1
-        elif current.val == self.tail.val:
-            self.tail.prev = None
-            self.length -= 1
-        else:
-            while current.next:
-                if current.val == val:
-                    print('current.val in while: ', current.val)
+        while current:
+            if current.val == val:
+                if current.prev:
                     current.prev.next = current.next
-                    self.length -= 1
-                    break
-                current = current.next
+                    current.next.prev = current.prev
+                else:
+                    self.head = current.next
+                    current.next.prev = None
+            current = current.next
+        self.length -= 1

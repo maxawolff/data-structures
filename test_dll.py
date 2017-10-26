@@ -41,7 +41,6 @@ def test_pop_returns_removes_and_returns_head(new_dll):
     assert new_dll.pop() == 4
 
 
-''''''
 def test_remove_node_from_list(new_dll):
     """Test_remove_node_from_list."""
     new_dll.push(3)
@@ -51,11 +50,7 @@ def test_remove_node_from_list(new_dll):
     print('tail is: {}\nhead is: {}'.format(new_dll.tail.val, new_dll.head.val))
     new_dll.remove(2)
     print(new_dll.display(), len(new_dll))
-    # print('head.next val: ', new_dll.head.next.val)
-    print('tail.prev val: %s should not be 2' % new_dll.tail.prev.val)
-    # print('head.next.next val: ', new_dll.head.next.next.val)
-    # assert new_dll.tail.prev.val == 1
-''''''
+    assert new_dll.tail.prev.val == 1
 
 
 def test_append_to_dll(new_dll):
