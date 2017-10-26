@@ -17,10 +17,15 @@ def test_dll_on_init_has_tail(new_dll):
     assert hasattr(new_dll, 'tail')
 
 
-    def test_push_to_dll(new_dll):
+def test_push_to_dll(new_dll):
     """Test to for push method."""
     new_dll.push(2)
     assert new_dll.head.val == 2
+
+
+def test_new_dll_head_is_none(new_dll):
+    """."""
+    assert new_dll.head is None
 
 
 def test_node_has_prev_pointer():
@@ -35,10 +40,11 @@ def test_node_has_prev_pointer():
 #     assert new_dll.pop() == 4
 #
 
-# def test_remove_node_from_list(new_dll):
-#     """Test_remove_node_from_list."""
-#     new_dll.push(1)
-#     new_dll.push(2)
-#     new_dll.push(3)
-#     new_dll.remove(2)
-#     assert new_dll.head.next.val == 1
+
+def test_remove_node_from_list(new_dll):
+    """Test_remove_node_from_list."""
+    new_dll.push(1)
+    new_dll.push(2)
+    new_dll.push(3)
+    new_dll.remove(2)
+    assert new_dll.head.next.val == 1

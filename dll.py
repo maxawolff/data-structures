@@ -14,13 +14,13 @@ class DLL(LinkedList):
     def push(self, val):
         """Add new item to the head of the double linked list."""
         # super(DLL, self).push(val)
-        if not self.head:
+        if self.head is None:
+            self.head = Node(val, self.head)
+            self.tail = self.head
+        else:
             orig_head = self.head
             self.head = Node(val, self.head)
             orig_head.prev = self.head
-        else:
-            self.head = Node(val, self.head)
-
         self.length += 1
 
     def pop(self):
@@ -29,15 +29,24 @@ class DLL(LinkedList):
 
     def remove(self, node):
         """Remove selected node."""
-        current = self.head
-        node_to_remove = None
-        while current:
-            if current.next.val == node:
-                node_to_remove = current.next
-                self.length -= 1
-                current.next = current.next.next
-                current.prev = current.prev.prev
-            current = current.next
+        if node == self.head.val:
+            self.head = node.next
+        else:
+            current = self.head
+            node_to_remove = None
+            while current:
+                if current.next.next is None:
+                    self.tail = current.next
+                    current.next is None
+                elif current.next.val == node:
+                    node_to_remove = current.next
+                    self.length -= 1
+                    current.next = current.next.next
+                    if current.prev is None:
+                        pass
+                    else:
+                        current.prev = current.prev.prev
+                current = current.next
 
         if node_to_remove is None:
             raise IndexError("Node was not found in list")
