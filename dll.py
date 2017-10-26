@@ -27,26 +27,42 @@ class DLL(LinkedList):
         """Remove and return the head."""
         return super(DLL, self).pop()
 
-    def remove(self, node):
+    def remove(self, val):
         """Remove selected node."""
-        if node == self.head.val:
-            self.head = node.next
-        else:
-            current = self.head
-            node_to_remove = None
-            while current:
-                if current.next.next is None:
-                    self.tail = current.next
-                    current.next is None
-                elif current.next.val == node:
-                    node_to_remove = current.next
-                    self.length -= 1
-                    current.next = current.next.next
-                    if current.prev is None:
-                        pass
-                    else:
-                        current.prev = current.prev.prev
-                current = current.next
+        # if node == self.head.val:
+        #     self.head = node.next
+        # else:
+        #     current = self.head
+        #     node_to_remove = None
+        #     while current:
+        #         if current.next.next is None:
+        #             self.tail = current.next
+        #             current.next is None
+        #         elif current.next.val == node:
+        #             node_to_remove = current.next
+        #             self.length -= 1
+        #             current.next = current.next.next
+        #             if current.prev is None:
+        #                 pass
+        #             else:
+        #                 current.prev = current.prev.prev
+        #         current = current.next
+        previous = None
+        if not val:
+            raise ValueError("No value was given")
 
-        if node_to_remove is None:
-            raise IndexError("Node was not found in list")
+        if not self.head and not self.tail:
+            raise IndexError("List is empty")
+        current = self.head
+        if val == current.val:
+            self.head = current.next
+        elif current.val == self.tail.val:
+            self.tail.prev = None
+        else:
+            while current.next:
+                if current.val == val:
+                    current.next.prev = previous
+                previous = current
+                current = current.next
+        # if node_to_remove is None:
+        #     raise IndexError("Node was not found in list")
