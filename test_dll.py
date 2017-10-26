@@ -19,6 +19,7 @@ def test_dll_on_init_has_tail(new_dll):
 
 def test_push_to_dll(new_dll):
     """Test to for push method."""
+    new_dll.push(1)
     new_dll.push(2)
     assert new_dll.head.val == 2
 # test for head.val == tail.val
@@ -46,10 +47,7 @@ def test_remove_node_from_list(new_dll):
     new_dll.push(3)
     new_dll.push(2)
     new_dll.push(1)
-    print(new_dll.display(), len(new_dll))
-    print('tail is: {}\nhead is: {}'.format(new_dll.tail.val, new_dll.head.val))
     new_dll.remove(2)
-    print(new_dll.display(), len(new_dll))
     assert new_dll.tail.prev.val == 1
 
 
@@ -58,5 +56,5 @@ def test_append_to_dll(new_dll):
     new_dll.push(2)
     new_dll.push(1)
     new_dll.append(3)
-    print(new_dll.display(), new_dll.head.next.val)
+    print('testing append method', new_dll.display(), len(new_dll))
     assert new_dll.tail.val == 3

@@ -30,10 +30,11 @@ class DLL(LinkedList):
             self.tail = Node(val)
             self.head = self.tail
         else:
+            new_node = Node(val)
             orig_tail = self.tail
-            self.tail = Node(val)
+            self.tail = new_node
             self.tail.prev = orig_tail
-            # self.tail = orig_tail.next
+            orig_tail.next = self.tail
         self.length += 1
 
     def pop(self):
