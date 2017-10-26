@@ -23,6 +23,19 @@ class DLL(LinkedList):
             orig_head.prev = self.head
         self.length += 1
 
+    def append(self, val):
+        """Add new item to the head of the double linked list."""
+        # super(DLL, self).push(val)
+        if self.tail is None:
+            self.tail = Node(val)
+            self.head = self.tail
+        else:
+            orig_tail = self.tail
+            self.tail = Node(val)
+            self.tail.prev = orig_tail
+            # self.tail = orig_tail.next
+        self.length += 1
+
     def pop(self):
         """Remove and return the head."""
         return super(DLL, self).pop()
@@ -47,7 +60,6 @@ class DLL(LinkedList):
         #             else:
         #                 current.prev = current.prev.prev
         #         current = current.next
-        previous = None
         if not val:
             raise ValueError("No value was given")
 
@@ -56,13 +68,15 @@ class DLL(LinkedList):
         current = self.head
         if val == current.val:
             self.head = current.next
+            self.length -= 1
         elif current.val == self.tail.val:
             self.tail.prev = None
+            self.length -= 1
         else:
             while current.next:
                 if current.val == val:
-                    current.next.prev = previous
-                previous = current
+                    print('current.val in while: ', current.val)
+                    current.prev.next = current.next
+                    self.length -= 1
+                    break
                 current = current.next
-        # if node_to_remove is None:
-        #     raise IndexError("Node was not found in list")

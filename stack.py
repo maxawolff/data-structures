@@ -10,7 +10,7 @@ class Stack(object):
         """Function to create an instance of a stack."""
         self.length = 0
         self._stack = LinkedList()
-        self.top = None
+        self.top = self._stack.head  # changed from = None
         if isinstance(iterable, (str, tuple, list)):
             for i in iterable:
                 self.push(i)
@@ -19,7 +19,7 @@ class Stack(object):
         """Use LinkedList pop method."""
         """Remove the head of the list and return it."""
         if self.top is None:
-            raise IndexError("List is empty, cannot pop from an empty list")
+            raise IndexError("Stack is empty, cannot pop from an empty stack")
         val = self.top.val
         self.top = self.top.next
         self.length -= 1
