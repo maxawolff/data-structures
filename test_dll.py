@@ -38,8 +38,11 @@ def test_node_has_prev_pointer():
 
 def test_pop_returns_removes_and_returns_head(new_dll):
     """Test_pop_returns_removes_and_returns_head."""
+    new_dll.push(1)
+    new_dll.push(2)
     new_dll.push(4)
-    assert new_dll.pop() == 4
+    res = new_dll.pop()
+    assert res == 4
 
 
 def test_remove_node_from_list(new_dll):
@@ -58,3 +61,11 @@ def test_append_to_dll(new_dll):
     new_dll.append(3)
     print('testing append method', new_dll.display(), len(new_dll))
     assert new_dll.tail.val == 3
+
+
+def test_shift_removes_tail(new_dll):
+    """Test_shift_removes_tail."""
+    new_dll.push(2)
+    new_dll.push(1)
+    new_dll.append(3)
+    assert new_dll.shift() == 3
