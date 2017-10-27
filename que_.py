@@ -1,7 +1,6 @@
 """Implementation of a que."""
 
 from dll import DLL
-from linked_list import Node
 
 
 class Queue(DLL):

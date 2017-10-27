@@ -45,3 +45,17 @@ def test_peek_returns_head_val(new_queue):
     new_queue.enqueue(3)
     new_queue.enqueue(4)
     assert new_queue.peek() == 3
+
+
+def test_que_length(new_queue):
+    """Test_que_length."""
+    new_queue.enqueue(3)
+    new_queue.enqueue(4)
+    assert len(new_queue) == 2
+
+
+def test_que_size(new_queue):
+    """Test_que_size."""
+    new_queue.enqueue(3)
+    new_queue.enqueue(4)
+    assert new_queue.size() == 2
