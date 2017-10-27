@@ -38,3 +38,10 @@ def test_dequeue_returns_and_deletes_head(new_queue):
     new_queue.enqueue(2)
     new_queue.enqueue(4)
     assert new_queue.dequeue() == 2
+
+
+def test_peek_returns_head_val(new_queue):
+    """Test_peek_returns_head.val."""
+    new_queue.enqueue(3)
+    new_queue.enqueue(4)
+    assert new_queue.peek() == 3

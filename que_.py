@@ -14,3 +14,7 @@ class Queue(DLL):
     def dequeue(self):
         """Remove head and return val."""
         return super(Queue, self).pop()
+
+    def peek(self):
+        """Return the value of the first item in queue."""
+        return self.head.val
