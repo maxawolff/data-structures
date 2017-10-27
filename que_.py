@@ -10,3 +10,7 @@ class Queue(DLL):
     def enqueue(self, value):
         """Enqueue method for queue."""
         super(Queue, self).append(value)
+
+    def dequeue(self):
+        """Remove head and return val."""
+        return super(Queue, self).pop()

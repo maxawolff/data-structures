@@ -6,10 +6,13 @@ from linked_list import LinkedList, Node
 class DLL(LinkedList):
     """Double linked list."""
 
-    def __init__(self):
+    def __init__(self, iterable=None):
         """On list creation set tail to none."""
         super(DLL, self).__init__()
         self.tail = None
+        if isinstance(iterable, (str, tuple, list)):
+            for i in iterable:
+                self.push(i)
 
     def push(self, val):
         """Add new item to the head of the double linked list."""
