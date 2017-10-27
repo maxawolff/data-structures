@@ -61,4 +61,8 @@ Oct 25 17 1620hrs node prev pointer
 Oct 25 17 1640hrs dll.pop
                   Testing
                   README
+
+Oct 25 17 1700hrs dll.pop, dll.shift, dll.append, dll.remove
+                  Testing
+                  README
 </pre>
