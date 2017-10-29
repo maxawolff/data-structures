@@ -18,34 +18,40 @@ def test_dll_on_init_has_tail(new_dll):
 
 
 def test_push_to_dll(new_dll):
-    """Test to for push method."""
+    """Test for push method, two items."""
     new_dll.push(1)
     new_dll.push(2)
     assert new_dll.head.val == 2
 # test for head.val == tail.val
 
 
+def test_push_to_empty_dll(new_dll):
+    """Test for push method no items."""
+    new_dll.push(1)
+    assert new_dll.head.val == 1
+
+
 def test_push_to_dll_next(new_dll):
-    """Test to for push method."""
+    """Test to push value changes head.next."""
     new_dll.push(1)
     new_dll.push(2)
     assert new_dll.head.next_node.val == 1
 
 
 def test_push_to_dll_prev(new_dll):
-    """Test to for push method."""
+    """Test for push method affecting previous values."""
     new_dll.push(1)
     new_dll.push(2)
     assert new_dll.head.next_node.prev_node.val == 2
 
 
 def test_new_dll_head_is_none(new_dll):
-    """."""
+    """Test if dll head is empty on init."""
     assert new_dll.head is None
 
 
 def test_new_dll_tail_is_none(new_dll):
-    """."""
+    """Test if dll tail is empty on init."""
     assert new_dll.tail is None
 
 
@@ -65,7 +71,7 @@ def test_pop_returns_removes_and_returns_head(new_dll):
 
 
 def test_pop_next_val(new_dll):
-    """Test_pop_returns_removes_and_returns_head."""
+    """Test_pop_affect next pointer."""
     new_dll.push(1)
     new_dll.push(2)
     new_dll.push(4)
@@ -74,7 +80,7 @@ def test_pop_next_val(new_dll):
 
 
 def test_pop_prev_val(new_dll):
-    """Test_pop_returns_removes_and_returns_head."""
+    """Test_pop_affect previous pointer."""
     new_dll.push(1)
     new_dll.push(2)
     new_dll.push(4)
@@ -96,7 +102,28 @@ def test_append_to_dll(new_dll):
     new_dll.push(2)
     new_dll.push(1)
     new_dll.append(3)
-    print('testing append method', new_dll.display(), len(new_dll))
+    assert new_dll.tail.val == 3
+
+
+def test_append_to_dll_prev(new_dll):
+    """Test for append method."""
+    new_dll.push(2)
+    new_dll.push(1)
+    new_dll.append(3)
+    assert new_dll.tail.prev_node.val == 2
+
+
+def test_append_to_dll_next(new_dll):
+    """Test for append method."""
+    new_dll.push(2)
+    new_dll.push(1)
+    new_dll.append(3)
+    assert new_dll.head.next_node.val == 2
+
+
+def test_append_to_empty_dll(new_dll):
+    """Test for append method."""
+    new_dll.append(3)
     assert new_dll.tail.val == 3
 
 
@@ -106,3 +133,33 @@ def test_shift_removes_tail(new_dll):
     new_dll.push(1)
     new_dll.append(3)
     assert new_dll.shift() == 3
+
+
+def test_remove_no_value_raise_error(new_dll):
+    """Remove on empty dll should raise exception."""
+    with pytest.raises(IndexError):
+        new_dll.remove(2)
+
+
+def test_remove_no_value_specified_raise_error(new_dll):
+    """Remove on empty dll should raise exception."""
+    new_dll.push(2)
+    with pytest.raises(TypeError):
+        new_dll.remove()
+
+
+def test_shift_removes_tail_prev_pointer(new_dll):
+    """Test_shift_removes_tail_affect_prev_correctly."""
+    new_dll.push(2)
+    new_dll.push(1)
+    new_dll.append(3)
+    new_dll.shift()
+    assert new_dll.tail.prev_node.val == 1
+
+
+def test_shift_removes_tail_next_pointer(new_dll):
+    """Test_shift_removes_tail_affect_next_correctly."""
+    new_dll.push(2)
+    new_dll.push(1)
+    new_dll.shift()
+    assert new_dll.head.next_node is None
