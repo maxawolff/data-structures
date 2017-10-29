@@ -6,13 +6,10 @@ from linked_list import LinkedList, Node
 class DLL(LinkedList):
     """Double linked list."""
 
-    def __init__(self, iterable=None):
+    def __init__(self):
         """On list creation set tail to none."""
         super(DLL, self).__init__()
         self.tail = None
-        if isinstance(iterable, (str, tuple, list)):
-            for i in iterable:
-                self.push(i)
 
     def push(self, val):
         """Add new item to the head of the double linked list."""
@@ -23,7 +20,7 @@ class DLL(LinkedList):
         else:
             orig_head = self.head
             self.head = Node(val, self.head)
-            orig_head.prev = self.head
+            orig_head.prev_node = self.head
         self.length += 1
 
     def append(self, val):
@@ -36,8 +33,8 @@ class DLL(LinkedList):
             new_node = Node(val)
             orig_tail = self.tail
             self.tail = new_node
-            self.tail.prev = orig_tail
-            orig_tail.next = self.tail
+            self.tail.prev_node = orig_tail
+            orig_tail.next_node = self.tail
         self.length += 1
 
     def pop(self):
@@ -45,8 +42,8 @@ class DLL(LinkedList):
         if self.head is None:
             raise IndexError("List is empty, cannot pop from an empty list")
         val = self.head.val
-        self.head = self.head.next
-        self.head.prev = None
+        self.head = self.head.next_node
+        self.head.prev_node = None
         self.length -= 1
         return val
 
@@ -55,8 +52,8 @@ class DLL(LinkedList):
         if self.head is None:
             raise IndexError("List is empty, cannot pop from an empty list")
         val = self.tail.val
-        self.tail = self.tail.prev
-        self.tail.next = None
+        self.tail = self.tail.prev_node
+        self.tail.next_node = None
         self.length -= 1
         return val
 
@@ -70,11 +67,11 @@ class DLL(LinkedList):
         current = self.head
         while current:
             if current.val == val:
-                if current.prev:
-                    current.prev.next = current.next
-                    current.next.prev = current.prev
+                if current.prev_node:
+                    current.prev_node.next_node = current.next_node
+                    current.next_node.prev_node = current.prev_node
                 else:
-                    self.head = current.next
-                    current.next.prev = None
-            current = current.next
+                    self.head = current.next_node
+                    current.next_node.prev = None
+            current = current.next_node
         self.length -= 1

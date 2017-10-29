@@ -21,8 +21,8 @@ class LinkedList(object):
         """Remove the head of the list and return it."""
         if self.head is None:
             raise IndexError("List is empty, cannot pop from an empty list")
-        val = self.head.val
-        self.head = self.head.next
+        val = self.head
+        self.head = self.head.next_node
         self.length -= 1
         return val
 
@@ -32,18 +32,18 @@ class LinkedList(object):
         while current:
             if current.val == val:
                 return current
-            current = current.next
+            current = current.next_node
 
     def remove(self, node):
         """Remove a node from the linked list."""
         current = self.head
         node_to_remove = None
         while current:
-            if current.next == node:
-                node_to_remove = current.next
+            if current.next_node == node:
+                node_to_remove = current.next_node
                 self.length -= 1
-                current.next = current.next.next
-            current = current.next
+                current.next_node = current.next_node.next_node
+            current = current.next_node
 
         if node_to_remove is None:
             raise IndexError("Node was not found in list")
@@ -65,9 +65,9 @@ class LinkedList(object):
         thing = '('
         thing += str(self.head.val)
         current_node = self.head
-        while current_node.next:
-            thing += ', ' + str(current_node.next.val)
-            current_node = current_node.next
+        while current_node.next_node:
+            thing += ', ' + str(current_node.next_node.val)
+            current_node = current_node.next_node
         thing += ')'
         return thing
 
@@ -75,8 +75,8 @@ class LinkedList(object):
 class Node(object):
     """Class for node."""
 
-    def __init__(self, val, next=None, prev=None):
+    def __init__(self, val, next_node=None, prev_node=None):
         """Create a new node."""
         self.val = val
-        self.next = next
-        self.prev = prev
+        self.next_node = next_node
+        self.prev_node = prev_node
