@@ -21,7 +21,7 @@ class Stack(object):
         if self.top is None:
             raise IndexError("List is empty, cannot pop from an empty list")
         val = self.top.val
-        self.top = self.top.next
+        self.top = self.top.next_node
         self.length -= 1
         return val
 
