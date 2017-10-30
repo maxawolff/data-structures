@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/maxawolff/data-structures.svg?branch=master)](https://travis-ci.org/maxawolff/data-structures)
+
 # Implement Data Structures In Python
 
 - **Max Wolff & Chris Closser**
