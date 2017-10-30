@@ -10,6 +10,22 @@ def test_push():
     assert res.head.val == 2
 
 
+def test_push_two_items():
+    """Test for push method."""
+    res = LinkedList()
+    res.push(2)
+    res.push(3)
+    assert res.head.val == 3
+
+
+def test_push_two_items_head_next():
+    """Test for push method."""
+    res = LinkedList()
+    res.push(2)
+    res.push(3)
+    assert res.head.next_node.val == 2
+
+
 def test_node():
     """Test for node."""
     test_node = Node(1)
@@ -68,12 +84,31 @@ def test_linked_list_pop_removes_head():
     assert ll.head is None
 
 
+def test_linked_list_pop_two_vals():
+    """Test to see if pop method removes the current head."""
+    ll = LinkedList()
+    ll.push(1)
+    ll.push(2)
+    ll.pop()
+    assert ll.head.val == 1
+
+
+def test_linked_list_pop_three_vals_next_works():
+    """Test to see if pop method removes the current head."""
+    ll = LinkedList()
+    ll.push(1)
+    ll.push(2)
+    ll.push(3)
+    ll.pop()
+    assert ll.head.next_node.val == 1
+
+
 def test_linked_list_search_returns_node_if_exists():
     """Test_linked_list_search_returns_node_if_exists."""
     ll = LinkedList()
     ll.push(1)
     ll.push(2)
-    assert ll.search(1) == ll.head.next
+    assert ll.search(1) == ll.head.next_node
 
 
 def test_remove_removes_node():
@@ -81,8 +116,8 @@ def test_remove_removes_node():
     ll = LinkedList()
     ll.push(1)
     ll.push(2)
-    ll.remove(ll.head.next)
-    assert ll.head.next is None
+    ll.remove(ll.head.next_node)
+    assert ll.head.next_node is None
 
 
 def test_remove_raises_exception_when_node_not_found():
@@ -105,3 +140,10 @@ def test_pop_empty_list_raises_index_error():
     ll = LinkedList()
     with pytest.raises(IndexError):
         ll.pop()
+
+
+def test_ll_search_one_val():
+    """Test search method with one node."""
+    ll = LinkedList()
+    ll.push(2)
+    assert ll.search(2).val == 2
