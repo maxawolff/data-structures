@@ -12,3 +12,7 @@ class Deque(DLL):
     def pop(self):
         """Remove a value at end of dequeue and return value."""
         return super(Deque, self).shift()
+
+    def popleft(self):
+        """Remove a value at the head of deque and return it."""
+        return super(Deque, self).pop()
