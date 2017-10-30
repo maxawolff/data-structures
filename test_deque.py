@@ -4,13 +4,20 @@ import pytest
 
 
 @pytest.fixture
-def new_dequeue():
+def dq():
     """Make an empty dequeue."""
     return Deque()
 
 
-def test_dequeue(new_dequeue):
+def test_dequeue(dq):
     """Test append to tail."""
-    new_dequeue.append(2)
-    print(new_dequeue)
-    assert new_dequeue.tail.val == 2
+    dq.append(2)
+    print(dq)
+    assert dq.tail.val == 2
+
+
+def test_append_left(dq):
+    """Test that append left adds value to the head."""
+    dq.appendleft(1)
+    dq.appendleft(2)
+    assert dq.head.val == 2
