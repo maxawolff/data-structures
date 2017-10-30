@@ -21,3 +21,11 @@ def test_append_left(dq):
     dq.appendleft(1)
     dq.appendleft(2)
     assert dq.head.val == 2
+
+
+def test_pop_removes_tail(dq):
+    """Test_pop_removes_tail."""
+    dq.append(2)
+    dq.append(1)
+    dq.append(3)
+    assert dq.pop() == 3
