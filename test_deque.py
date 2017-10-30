@@ -59,3 +59,24 @@ def test_peekleft_returns_head_val(dq):
     dq.appendleft(2)
     dq.appendleft(1)
     assert dq.peekleft() == 1
+
+
+def test_dequeue_size_inherit(dq):
+    """Test_dequeue_size_inherit."""
+    dq.appendleft(3)
+    dq.appendleft(2)
+    dq.appendleft(1)
+    assert dq.size() == 3
+
+
+def test_dequeue_len_inherit(dq):
+    """Test_dequeue_len_inherit."""
+    dq.appendleft(3)
+    dq.appendleft(2)
+    dq.appendleft(1)
+    assert len(dq) == 3
+
+
+def test_dequeue_len_empty(dq):
+    """Test length of empty dequeue is 0."""
+    assert len(dq) == 0
