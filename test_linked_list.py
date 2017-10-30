@@ -98,3 +98,10 @@ def test_linkedlist_take_iterable():
     ll = LinkedList(tlist)
     for item in tlist:
         assert ll.search(item).val == item
+
+
+def test_pop_empty_list_raises_index_error():
+    """Test_pop_empty_list_raises_index_error."""
+    ll = LinkedList()
+    with pytest.raises(IndexError):
+        ll.pop()
