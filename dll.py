@@ -59,9 +59,6 @@ class DLL(LinkedList):
 
     def remove(self, val):
         """Remove selected node."""
-        if not val:
-            raise ValueError("No value was given")
-
         if not self.head and not self.tail:
             raise IndexError("List is empty")
         current = self.head
