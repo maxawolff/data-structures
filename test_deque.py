@@ -51,3 +51,11 @@ def test_peek_returns_tail_val(dq):
     dq.appendleft(2)
     dq.appendleft(1)
     assert dq.peek() == 3
+
+
+def test_peekleft_returns_head_val(dq):
+    """Peek should return value of the tail."""
+    dq.appendleft(3)
+    dq.appendleft(2)
+    dq.appendleft(1)
+    assert dq.peekleft() == 1

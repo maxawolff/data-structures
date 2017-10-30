@@ -20,3 +20,7 @@ class Deque(DLL):
     def peek(self):
         """Return value of tail."""
         return self.tail.val
+
+    def peekleft(self):
+        """Return value of head."""
+        return self.head.val
