@@ -16,3 +16,7 @@ class Deque(DLL):
     def popleft(self):
         """Remove a value at the head of deque and return it."""
         return super(Deque, self).pop()
+
+    def peek(self):
+        """Return value of tail."""
+        return self.tail.val

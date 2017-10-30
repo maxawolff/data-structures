@@ -43,3 +43,11 @@ def test_popleft_returns_head(dq):
     dq.append(1)
     dq.append(3)
     assert dq.popleft() == 2
+
+
+def test_peek_returns_tail_val(dq):
+    """Peek should return value of the tail."""
+    dq.appendleft(3)
+    dq.appendleft(2)
+    dq.appendleft(1)
+    assert dq.peek() == 3
