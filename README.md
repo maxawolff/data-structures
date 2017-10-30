@@ -8,7 +8,21 @@
 - Implementing data structures
   - Single linked list
   - Stack
-  
+- Method time complexity
+  - push() O(1)
+  - pop() O(1)
+  - search() O(n)
+  - remove() O(n)
+  - size() O(1)
+  - display() O(n)
+  - len() O(1)
+  - print() O(n)
+  - append() O(1)
+  - shift() O(1)
+  - enqueue() O(1)
+  - dequeue() O(1)
+  - peek() O(1)
+
 ## Getting Started
 <!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
   You can fork or clone the repository [here](https://github.com/maxawolff/data-structures)
