@@ -25,6 +25,7 @@ class Binheap(object):
                         idx = 0
                         count1 = 1
                         count2 = 2
+                        continue
                     elif item < self.container[count2 + idx]:
                         old_val = item
                         self.container[idx] = self.container[count2 + idx]
@@ -32,6 +33,7 @@ class Binheap(object):
                         idx = 0
                         count1 = 1
                         count2 = 2
+                        continue
                     count1 += 1
                     count2 += 1
                     idx += 1
