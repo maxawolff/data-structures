@@ -6,15 +6,22 @@ class Binheap(object):
 
     def __init__(self):
         """."""
-        self.head = None
+        self.container = []
 
-
-class BinNode(object):
-    """Node for binary heap."""
-
-    def __init__(self, val, parent=None, left=None, right=None):
-        """Initialization of binheap node."""
-        self.val = val
-        self.parent = parent
-        self.left = left
-        self.right = right
+    def push(self, val):
+        """Add new value."""
+        self.container.append(val)
+        count1 = 1
+        count2 = 2
+        for idx, item in enumerate(self.container):
+            try:
+                if item < self.container[count1]:
+                    old_val = item
+                    self.container[idx] = self.container[count1]
+                    self.container[count1] = old_val
+                elif item < self.container[count2]:
+                    old_val = item
+                    self.container[idx] = self.container[count2]
+                    self.container[count2] = old_val
+            except IndexError:
+                pass
