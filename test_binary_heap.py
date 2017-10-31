@@ -1,5 +1,5 @@
 """Test binary heap."""
-from binary_heap import Binheap, BinNode
+from binary_heap import Binheap
 import pytest
 
 
@@ -9,24 +9,73 @@ def new_bin():
     return Binheap()
 
 
-@pytest.fixture
-def new_node():
-    """Create an empty tree."""
-    return BinNode(5)
-
-
 def test_new_tree_first_node_no_head(new_bin):
     """Test_new_tree_first_node_no_parent."""
-    assert new_bin.head is None
+    assert new_bin.container == []
 
 
-def test_new_node_has_val_and_parent(new_node):
-    """Test that node has attributes that it should."""
-    assert new_node.val == 5
-    assert new_node.parent is None
+def test_push_one_val(new_bin):
+    """Empty heap should have one item in it."""
+    new_bin.push(3)
+    assert new_bin.container[0] == 3
 
 
-def test_new_node_has_left_and_right(new_node):
-    """Test that node has attributes that it should."""
-    assert new_node.left is None
-    assert new_node.right is None
+def test_push_two_vals_out_of_order(new_bin):
+    """Empty heap should have one item in it."""
+    new_bin.push(3)
+    new_bin.push(10)
+    print(new_bin.container)
+    assert new_bin.container == [10, 3]
+
+
+def test_two_vals_backwards(new_bin):
+    """Value should get switched when put in out of order."""
+    new_bin.push(1)
+    new_bin.push(2)
+    assert new_bin.container == [2, 1]
+
+
+def test_three_vals_backwards(new_bin):
+    """Value should get switched when put in out of order."""
+    new_bin.push(1)
+    new_bin.push(2)
+    new_bin.push(3)
+    print(new_bin.container)
+    assert new_bin.container == [3, 1, 2]
+
+
+def test_four_vals_backwards(new_bin):
+    """Value should get switched when put in out of order."""
+    new_bin.push(1)
+    new_bin.push(2)
+    new_bin.push(3)
+    new_bin.push(4)
+    print(new_bin.container)
+    assert new_bin.container == [4, 3, 2, 1]
+
+
+def test_five_vals_backwards(new_bin):
+    """Value should get switched when put in out of order."""
+    new_bin.push(1)
+    new_bin.push(2)
+    new_bin.push(3)
+    new_bin.push(4)
+    new_bin.push(5)
+    print(new_bin.container)
+    assert new_bin.container == [5, 4, 3, 2, 1]
+
+
+# def test_ten_vals_backwards(new_bin):
+#     """."""
+#     new_bin.push(1)
+#     new_bin.push(2)
+#     new_bin.push(3)
+#     new_bin.push(4)
+#     new_bin.push(5)
+#     new_bin.push(6)
+#     new_bin.push(7)
+#     new_bin.push(8)
+#     new_bin.push(9)
+#     new_bin.push(10)
+#     print(new_bin.container)
+#     assert new_bin.container == [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]

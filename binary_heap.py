@@ -13,15 +13,27 @@ class Binheap(object):
         self.container.append(val)
         count1 = 1
         count2 = 2
-        for idx, item in enumerate(self.container):
-            try:
-                if item < self.container[count1]:
-                    old_val = item
-                    self.container[idx] = self.container[count1]
-                    self.container[count1] = old_val
-                elif item < self.container[count2]:
-                    old_val = item
-                    self.container[idx] = self.container[count2]
-                    self.container[count2] = old_val
-            except IndexError:
-                pass
+        idx = 0
+        while True:
+            while idx < len(self.container):
+                item = self.container[idx]
+                try:
+                    if item < self.container[count1 + idx]:
+                        old_val = item
+                        self.container[idx] = self.container[count1 + idx]
+                        self.container[count1 + idx] = old_val
+                        idx = 0
+                        count1 = 1
+                        count2 = 2
+                    elif item < self.container[count2 + idx]:
+                        old_val = item
+                        self.container[idx] = self.container[count2 + idx]
+                        self.container[count2 + idx] = old_val
+                        idx = 0
+                        count1 = 1
+                        count2 = 2
+                    count1 += 1
+                    count2 += 1
+                    idx += 1
+                except IndexError:
+                    return
