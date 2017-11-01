@@ -25,14 +25,14 @@ def test_push_two_vals_out_of_order(new_bin):
     new_bin.push(3)
     new_bin.push(10)
     print(new_bin.container)
-    assert new_bin.container == [10, 3]
+    assert new_bin.container == [3, 10]
 
 
 def test_two_vals_backwards(new_bin):
     """Value should get switched when put in out of order."""
     new_bin.push(1)
     new_bin.push(2)
-    assert new_bin.container == [2, 1]
+    assert new_bin.container == [1, 2]
 
 
 def test_three_vals_backwards(new_bin):
@@ -41,29 +41,7 @@ def test_three_vals_backwards(new_bin):
     new_bin.push(2)
     new_bin.push(3)
     print(new_bin.container)
-    assert new_bin.container == [3, 1, 2]
-
-
-def test_four_vals_backwards(new_bin):
-    """Value should get switched when put in out of order."""
-    new_bin.push(1)
-    new_bin.push(2)
-    new_bin.push(3)
-    new_bin.push(4)
-    print(new_bin.container)
-    assert new_bin.container == [4, 3, 2, 1]
-
-
-def test_five_vals_backwards(new_bin):
-    """Value should get switched when put in out of order."""
-    new_bin.push(1)
-    new_bin.push(2)
-    new_bin.push(3)
-    new_bin.push(4)
-    new_bin.push(5)
-    print(new_bin.container)
-    assert new_bin.container == [5, 4, 3, 2, 1]
-
+    assert new_bin.container == [1, 2, 3]
 
 def test_ten_vals_backwards(new_bin):
     """."""
@@ -78,7 +56,7 @@ def test_ten_vals_backwards(new_bin):
     new_bin.push(9)
     new_bin.push(10)
     print(new_bin.container)
-    assert new_bin.container == [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+    assert new_bin.container[6] > new_bin.container[2]
 
 
 def test_15_vals_backwards(new_bin):
@@ -99,4 +77,57 @@ def test_15_vals_backwards(new_bin):
     new_bin.push(14)
     new_bin.push(1)
     print(new_bin.container)
-    assert new_bin.container == [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+    assert new_bin.container[3] > new_bin.container[1]
+
+
+def test_pop_first(new_bin):
+    """."""
+    new_bin.push(15)
+    new_bin.push(2)
+    new_bin.push(3)
+    new_bin.push(4)
+    new_bin.push(5)
+    new_bin.push(6)
+    new_bin.push(7)
+    new_bin.push(8)
+    new_bin.push(9)
+    new_bin.push(10)
+    new_bin.push(11)
+    new_bin.push(12)
+    new_bin.push(13)
+    new_bin.push(14)
+    new_bin.push(1)
+    # print(new_bin.pop())
+    assert new_bin.pop() == 1
+
+
+def test_pop_second(new_bin):
+    """."""
+    new_bin.push(15)
+    new_bin.push(2)
+    new_bin.push(3)
+    new_bin.push(4)
+    new_bin.push(5)
+    new_bin.push(6)
+    new_bin.push(7)
+    new_bin.push(8)
+    new_bin.push(9)
+    new_bin.push(10)
+    new_bin.push(11)
+    new_bin.push(12)
+    new_bin.push(13)
+    new_bin.push(14)
+    new_bin.push(1)
+    new_bin.pop()
+    assert new_bin.pop() == 2
+
+
+def test_heap_pop_always_sorted_order(new_bin):
+    """."""
+    import random
+    random_nums = list(set([random.randint(0, 1000) for i in range(10)]))
+    for item in random_nums:
+        new_bin.push(item)
+    # heap = Heap(random_nums)
+    all_popped = [new_bin.pop() for i in range(len(new_bin.container))]
+    assert all_popped == sorted(random_nums, reverse=False)

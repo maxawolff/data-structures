@@ -20,11 +20,13 @@ class Binheap(object):
 
     def pop(self):
         """Remove head by bubbling down and removing and returning the val."""
-        if self.container == []:
+        if self._tailidx == -1:
             raise IndexError('Cannot pop from an empty list')
-
-        while self.container:
-            pass
+        min_val = self.container[0]
+        self.container[0] = self.container[self._tailidx]
+        self._tailidx -= 1
+        self._shiftdown(0)
+        return min_val
 
     def _shiftup(self, idx):
         """Go through container swapping values."""
@@ -40,8 +42,8 @@ class Binheap(object):
         while True:
             idx_val = self.container[idx]
 
-            left_idx, left_val = self._leftchild[idx, idx_val]
-            right_idx, right_val = self._rightchild[idx, idx_val]
+            left_idx, left_val = self._leftchild(idx, idx_val)
+            right_idx, right_val = self._rightchild(idx, idx_val)
             if idx_val <= left_val and idx_val <= right_val:
                 break
 
@@ -60,16 +62,16 @@ class Binheap(object):
         parent_idx = (idx - 1) // 2
         return parent_idx, self.container[parent_idx]
 
-    def _leftchild(self, idx):
+    def _leftchild(self, idx, default_val):
         """Find left child given parent."""
         child_idx = 2 * idx + 1
-        if child_idx > len(self.container) - 1:
-            return None, None
+        if child_idx > self._tailidx:
+            return None, default_val
         return child_idx, self.container[child_idx]
 
-    def _rightchild(self, idx):
+    def _rightchild(self, idx, default_val):
         """Find right child given parent."""
         child_idx = 2 * idx + 2
-        if child_idx > len(self.container) - 1:
-            return None, None
+        if child_idx > self._tailidx:
+            return None, default_val
         return child_idx, self.container[child_idx]
