@@ -17,35 +17,6 @@ class Binheap(object):
         else:
             self.container.append(val)
         self._shiftup(self._tailidx)
-        # self.container.append(val)
-        # count1 = 1
-        # count2 = 2
-        # idx = 0
-        # while True:
-        #     while idx < len(self.container):
-        #         item = self.container[idx]
-        #         try:
-        #             if item < self.container[count1 + idx]:
-        #                 old_val = item
-        #                 self.container[idx] = self.container[count1 + idx]
-        #                 self.container[count1 + idx] = old_val
-        #                 idx = 0
-        #                 count1 = 1
-        #                 count2 = 2
-        #                 continue
-        #             elif item < self.container[count2 + idx]:
-        #                 old_val = item
-        #                 self.container[idx] = self.container[count2 + idx]
-        #                 self.container[count2 + idx] = old_val
-        #                 idx = 0
-        #                 count1 = 1
-        #                 count2 = 2
-        #                 continue
-        #             count1 += 1
-        #             count2 += 1
-        #             idx += 1
-        #         except IndexError:
-        #             return
 
     def pop(self):
         """Remove head by bubbling down and removing and returning the val."""
@@ -56,6 +27,7 @@ class Binheap(object):
             pass
 
     def _shiftup(self, idx):
+        """Go through container swapping values."""
         while idx > 0:
             parent_idx, parent_val = self._parent(idx)
             if parent_val <= self.container[idx]:
@@ -63,7 +35,25 @@ class Binheap(object):
             self.container[parent_idx], self.container[idx] = self.container[idx], self.container[parent_idx]
             idx = parent_idx
 
+    def _shiftdown(self, idx):
+        """Go through container and swaps if parent is greater than child."""
+        while True:
+            idx_val = self.container[idx]
+
+            left_idx, left_val = self._leftchild[idx, idx_val]
+            right_idx, right_val = self._rightchild[idx, idx_val]
+            if idx_val <= left_val and idx_val <= right_val:
+                break
+
+            if left_val < right_val:
+                new_idx = left_idx
+            else:
+                new_idx = right_idx
+            self.container[new_idx], self.container[idx] = self.container[idx], self.container[new_idx]
+            idx = new_idx
+
     def _parent(self, idx):
+        """Find parent given child."""
         if idx == 0:
             return None, None
 
@@ -71,12 +61,14 @@ class Binheap(object):
         return parent_idx, self.container[parent_idx]
 
     def _leftchild(self, idx):
+        """Find left child given parent."""
         child_idx = 2 * idx + 1
         if child_idx > len(self.container) - 1:
             return None, None
         return child_idx, self.container[child_idx]
 
     def _rightchild(self, idx):
+        """Find right child given parent."""
         child_idx = 2 * idx + 2
         if child_idx > len(self.container) - 1:
             return None, None
