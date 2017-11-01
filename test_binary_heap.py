@@ -83,7 +83,7 @@ def test_ten_vals_backwards(new_bin):
 
 def test_15_vals_backwards(new_bin):
     """."""
-    new_bin.push(1)
+    new_bin.push(15)
     new_bin.push(2)
     new_bin.push(3)
     new_bin.push(4)
@@ -97,6 +97,6 @@ def test_15_vals_backwards(new_bin):
     new_bin.push(12)
     new_bin.push(13)
     new_bin.push(14)
-    new_bin.push(15)
+    new_bin.push(1)
     print(new_bin.container)
     assert new_bin.container == [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
