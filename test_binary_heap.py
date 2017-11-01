@@ -43,8 +43,9 @@ def test_three_vals_backwards(new_bin):
     print(new_bin.container)
     assert new_bin.container == [1, 2, 3]
 
+
 def test_ten_vals_backwards(new_bin):
-    """."""
+    """Test_ten_vals_backwards."""
     new_bin.push(1)
     new_bin.push(2)
     new_bin.push(3)
@@ -60,7 +61,7 @@ def test_ten_vals_backwards(new_bin):
 
 
 def test_15_vals_backwards(new_bin):
-    """."""
+    """Test_15_vals_backwards."""
     new_bin.push(15)
     new_bin.push(2)
     new_bin.push(3)
@@ -81,7 +82,7 @@ def test_15_vals_backwards(new_bin):
 
 
 def test_pop_first(new_bin):
-    """."""
+    """Test_pop_first."""
     new_bin.push(15)
     new_bin.push(2)
     new_bin.push(3)
@@ -97,37 +98,23 @@ def test_pop_first(new_bin):
     new_bin.push(13)
     new_bin.push(14)
     new_bin.push(1)
-    # print(new_bin.pop())
     assert new_bin.pop() == 1
 
 
 def test_pop_second(new_bin):
-    """."""
-    new_bin.push(15)
+    """Test_pop_second."""
     new_bin.push(2)
     new_bin.push(3)
-    new_bin.push(4)
-    new_bin.push(5)
-    new_bin.push(6)
-    new_bin.push(7)
-    new_bin.push(8)
-    new_bin.push(9)
-    new_bin.push(10)
-    new_bin.push(11)
-    new_bin.push(12)
-    new_bin.push(13)
-    new_bin.push(14)
     new_bin.push(1)
     new_bin.pop()
     assert new_bin.pop() == 2
 
 
 def test_heap_pop_always_sorted_order(new_bin):
-    """."""
+    """Test_heap_pop_always_sorted_order."""
     import random
     random_nums = list(set([random.randint(0, 1000) for i in range(10)]))
     for item in random_nums:
         new_bin.push(item)
-    # heap = Heap(random_nums)
     all_popped = [new_bin.pop() for i in range(len(new_bin.container))]
     assert all_popped == sorted(random_nums, reverse=False)
