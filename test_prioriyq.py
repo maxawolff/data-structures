@@ -33,7 +33,7 @@ def pq():
 def test_peek_returns_propper_head(pq):
     """."""
     pq.insert(1, 0)
-    pq.insert(2, 0)
+    pq.insert(2, 1)
     pq.insert(13, 1)
     pq.insert(12, 2)
     pq.insert(40, 2)
