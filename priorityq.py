@@ -23,6 +23,7 @@ class Priorityq(DLL):
                     if current.prev_node is None:
                         self.head = old_prev
                     current = old_prev.prev_node
+                    pdb.set_trace()
                 else:
                     break
 
