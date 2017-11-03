@@ -95,3 +95,18 @@ def test_add_edge_existing_node(new_graph):
     new_graph.add_edge(1, 2)
     assert new_graph._edges[0][0].val == 1
     assert new_graph._edges[0][1].val == 2
+
+
+def test_del_node_deletes_nodes(new_graph):
+    """."""
+    new_graph.add_node(1)
+    new_graph.del_node(1)
+    assert new_graph._nodes == []
+
+
+def test_del_node_deletes_node_1(new_graph):
+    """."""
+    new_graph.add_node(1)
+    new_graph.add_node(2)
+    new_graph.del_node(1)
+    assert new_graph._nodes[0].val == 2

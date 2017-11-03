@@ -49,7 +49,21 @@ class Graph(object):
         self._edges.append((node1, node2))
 
     def del_node(self, val):
-        """."""
+        """Delete and remove edges."""
+        del_node = 0
+        for node in self._nodes:
+            if node.val == val:
+                del_node = node
+                self._nodes.remove(node)
+        for edge in self._edges:
+            if del_node in edge:
+                self._edges.remove(edge)
+        for node in self._nodes:
+            for neighbor in node.neighbors:
+                if del_node in neighbor:
+                    node.neighbors.remove(neighbor)
+        if del_node == 0:
+            raise ValueError('node not found')
 
     def del_edge(self, val1, val2):
         """."""
