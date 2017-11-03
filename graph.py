@@ -41,6 +41,9 @@ class Graph(object):
             self.add_node(node2.val)
         if node1 == node2:
             raise ValueError("You cannot connect a node to itself")
+        for edge in self._edges:
+            if edge == (node1, node2):
+                return 'Edge already exists'
         node1.neighbors.append((node1, node2))
         node2.neighbors.append((node1, node2))
         self._edges.append((node1, node2))

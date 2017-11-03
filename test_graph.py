@@ -60,3 +60,38 @@ def test_add_edge_empty_graph_makes_edge(new_graph):
     new_graph.add_edge(1, 2)
     assert new_graph._edges[0][0].val == 1
     assert new_graph._edges[0][1].val == 2
+
+
+def test_add_edge_existing_nodes(new_graph):
+    """Test_add_edge_existing_nodes."""
+    new_graph.add_node(1)
+    new_graph.add_node(2)
+    new_graph.add_edge(1, 2)
+    assert new_graph._edges[0][0].val == 1
+    assert new_graph._edges[0][1].val == 2
+
+
+def test_add_existing_edge(new_graph):
+    """Test_add_existing_edge."""
+    new_graph.add_node(1)
+    new_graph.add_node(2)
+    new_graph.add_edge(1, 2)
+    assert new_graph.add_edge(1, 2) == 'Edge already exists'
+
+
+def test_add_existing_edge_reversed(new_graph):
+    """Test_add_existing_edge_reversed."""
+    new_graph.add_node(1)
+    new_graph.add_node(2)
+    new_graph.add_edge(1, 2)
+    new_graph.add_edge(2, 1)
+    assert new_graph._edges[1][0].val == 2
+    assert new_graph._edges[1][1].val == 1
+
+
+def test_add_edge_existing_node(new_graph):
+    """Test_add_edge_existing_nod."""
+    new_graph.add_node(1)
+    new_graph.add_edge(1, 2)
+    assert new_graph._edges[0][0].val == 1
+    assert new_graph._edges[0][1].val == 2
