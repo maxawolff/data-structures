@@ -1,5 +1,7 @@
 """Implement a graph."""
 
+import pdb
+
 
 class Graph(object):
     """Graph data structure."""
@@ -44,8 +46,11 @@ class Graph(object):
         for edge in self._edges:
             if edge == (node1, node2):
                 return 'Edge already exists'
-        node1.neighbors.append((node1, node2))
-        node2.neighbors.append((node1, node2))
+        # pdb.set_trace()
+        node1.neighbors.append((node1, node2))  # should only add nieghbors for node 1, but it adds them to both for some reason
+        # pdb.set_trace()
+        # node2.neighbors.append((node1, node2))
+        # pdb.set_trace()
         self._edges.append((node1, node2))
 
     def del_node(self, val):
@@ -56,11 +61,11 @@ class Graph(object):
                 del_node = node
                 self._nodes.remove(node)
         for edge in self._edges:
-            if del_node in edge:
+            if del_node.val == edge[0].val or del_node.val == edge[1].val:
                 self._edges.remove(edge)
         for node in self._nodes:
             for neighbor in node.neighbors:
-                if del_node in neighbor:
+                if del_node.val == neighbor[0].val or del_node.val == neighbor[1].val:
                     node.neighbors.remove(neighbor)
         if del_node == 0:
             raise ValueError('node not found')
