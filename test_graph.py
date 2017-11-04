@@ -32,16 +32,6 @@ def test_node_neighbors(new_node):
     assert new_node.neighbors == []
 
 
-def test_only_one_edge(new_graph):
-    """."""
-    ng = Graph()
-    ng.add_edge(1, 2)
-    node1 = ng._nodes[0]
-    # node2 = ng._nodes[1]
-    with pytest.raises(IndexError):
-        print(node1.neighbors[1][0].val)
-
-
 def test_insert_1node(new_graph):
     """."""
     new_graph.add_node(1)
@@ -135,7 +125,18 @@ def test_del_node_deltes_neighbor(new_graph):
     """."""
     ng = Graph()
     ng.add_edge(1, 2)
+    # pdb.set_trace()
     node1 = ng._nodes[0]
     node2 = ng._nodes[1]
     assert node1.neighbors[0][0].val == node1.val
     assert node1.neighbors[0][1].val == node2.val
+
+
+def test_only_one_edge(new_graph):
+    """."""
+    ng = Graph()
+    ng.add_edge(1, 2)
+    node1 = ng._nodes[0]
+    # node2 = ng._nodes[1]
+    with pytest.raises(IndexError):
+        print(node1.neighbors[1][0].val)

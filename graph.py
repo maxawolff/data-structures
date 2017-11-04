@@ -37,10 +37,10 @@ class Graph(object):
                 node2 = node
         if node1 == 0:
             node1 = Node(val1)
-            self.add_node(node1.val)
+            self._nodes.append(node1)
         if node2 == 0:
             node2 = Node(val2)
-            self.add_node(node2.val)
+            self._nodes.append(node2)
         if node1 == node2:
             raise ValueError("You cannot connect a node to itself")
         for edge in self._edges:
@@ -49,7 +49,7 @@ class Graph(object):
         # pdb.set_trace()
         node1.neighbors.append((node1, node2))  # should only add nieghbors for node 1, but it adds them to both for some reason
         # pdb.set_trace()
-        # node2.neighbors.append((node1, node2))
+        node2.neighbors.append((node1, node2))
         # pdb.set_trace()
         self._edges.append((node1, node2))
 
@@ -75,6 +75,10 @@ class Graph(object):
 
     def has_node(self, val):
         """."""
+        for node in self._nodes:
+            if node.val == val:
+                return node
+            raise ValueError('node not found')
 
     def neighbors(self, val):
         """."""
@@ -86,7 +90,7 @@ class Graph(object):
 class Node(object):
     """Graph node."""
 
-    def __init__(self, val, neighbors=[]):
+    def __init__(self, val):
         """."""
         self.val = val
-        self.neighbors = neighbors
+        self.neighbors = []
