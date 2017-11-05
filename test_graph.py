@@ -125,7 +125,6 @@ def test_del_node_deltes_neighbor(new_graph):
     """."""
     ng = Graph()
     ng.add_edge(1, 2)
-    # pdb.set_trace()
     node1 = ng._nodes[0]
     node2 = ng._nodes[1]
     assert node1.neighbors[0][0].val == node1.val
@@ -137,6 +136,39 @@ def test_only_one_edge(new_graph):
     ng = Graph()
     ng.add_edge(1, 2)
     node1 = ng._nodes[0]
-    # node2 = ng._nodes[1]
     with pytest.raises(IndexError):
         print(node1.neighbors[1][0].val)
+
+
+def test_neighbors_function_returns_list_of_neighbors(new_graph):
+    """."""
+    ng = Graph()
+    ng.add_edge(1, 2)
+    node1 = ng._nodes[0]
+    nlist = ng.neighbors(1)
+    assert nlist[0][0] == node1
+
+
+def test_adjacent_returns_true(new_graph):
+    """."""
+    ng = Graph()
+    ng.add_edge(1, 2)
+    assert ng.adjacent(1, 2) is True
+
+
+def test_remove_edge(new_graph):
+    """."""
+    ng = Graph()
+    ng.add_edge(1, 2)
+    ng.del_edge(1, 2)
+    assert ng._edges == []
+
+
+def test_remove_edge_also_removes_neighbors():
+    """."""
+    ng = Graph()
+    ng.add_edge(1, 2)
+    node1 = ng._nodes[0]
+    # node2 = ng._nodes[1]
+    ng.del_edge(1, 2)
+    assert node1.neighbors == []

@@ -46,20 +46,15 @@ class Graph(object):
         for edge in self._edges:
             if edge == (node1, node2):
                 return 'Edge already exists'
-        # pdb.set_trace()
-        node1.neighbors.append((node1, node2))  # should only add nieghbors for node 1, but it adds them to both for some reason
-        # pdb.set_trace()
+        node1.neighbors.append((node1, node2))
         node2.neighbors.append((node1, node2))
-        # pdb.set_trace()
         self._edges.append((node1, node2))
 
     def del_node(self, val):
         """Delete and remove edges."""
-        del_node = 0
-        for node in self._nodes:
-            if node.val == val:
-                del_node = node
-                self._nodes.remove(node)
+        del_node = self.has_node(val)
+        self._nodes.remove(del_node)
+
         for edge in self._edges:
             if del_node.val == edge[0].val or del_node.val == edge[1].val:
                 self._edges.remove(edge)
@@ -71,20 +66,41 @@ class Graph(object):
             raise ValueError('node not found')
 
     def del_edge(self, val1, val2):
-        """."""
+        """Remove an edge."""
+        for edge in self._edges:
+            if edge[0].val == val1 and edge[1].val == val2:
+                self._edges.remove(edge)
+                del_node1 = edge[0]
+                del_node2 = edge[1]
+                for node in self._nodes:
+                    for neighbor in node.neighbors:
+                        if del_node1.val == neighbor[0].val or del_node1.val == neighbor[1].val:
+                            node.neighbors.remove(neighbor)
+                        if del_node2.val == neighbor[0].val or del_node2.val == neighbor[1].val:
+                            node.neighbors.remove(neighbor)
+            else:
+                return 'edge not found'
 
     def has_node(self, val):
-        """."""
+        """Return the node if found."""
         for node in self._nodes:
             if node.val == val:
                 return node
             raise ValueError('node not found')
 
     def neighbors(self, val):
-        """."""
+        """Return list of neighbors for the given node."""
+        node = self.has_node(val)
+        return node.neighbors
 
     def adjacent(self, val1, val2):
-        """."""
+        """Return True if edge exists."""
+        for edge in self._edges:
+            pdb.set_trace()
+            if edge[0].val == val1 and edge[1].val == val2:
+                return True
+            else:
+                return False
 
 
 class Node(object):
