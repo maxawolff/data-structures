@@ -6,7 +6,7 @@ from dll import DLL
 class Queue(DLL):
     """Makes a queue."""
 
-    def __init__(self, priority):
+    def __init__(self, priority=None):
         """."""
         super(Queue, self).__init__()
         self.priority = priority
