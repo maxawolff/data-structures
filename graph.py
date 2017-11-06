@@ -29,47 +29,26 @@ class Graph(object):
     def add_edge(self, val1, val2):
         """Add a connection between two nodes, val1 points to val2."""
         node1 = 0
-        node2 = 1
-        for node in self._nodes:
-            if node.val == val1:
-                node1 = node
-            elif node.val == val2:
-                node2 = node
-        if node1 == 0:
-            node1 = Node(val1)
-<<<<<<< HEAD
-            print('here we are')
-            self._nodes.append(node1)
-        if node2 == 1:
-            node2 = Node(val2)
-            print('here we are, again')
-=======
-            self._nodes.append(node1)
-        if node2 == 0:
-            node2 = Node(val2)
->>>>>>> f93b4fac9b4540f4bf91046e346f4cc1e4aff976
-            self._nodes.append(node2)
-        if node1 == node2:
-            raise ValueError("You cannot connect a node to itself")
-        for edge in self._edges:
-            if edge == (node1, node2):
-                return 'Edge already exists'
-<<<<<<< HEAD
-        # pdb.set_trace()
-        print(node1.neighbors)
-        print(node2.neighbors)
-        node2.neighbors.append((node1, node2))  # should only add nieghbors for node 1, but it adds them to both for some reason
-        print(node1.neighbors)
-        print(node2.neighbors)
-        pdb.set_trace()
-
-        # node2.neighbors.append((node1, node2))
-        # pdb.set_trace()
-=======
-        node1.neighbors.append((node1, node2))
-        node2.neighbors.append((node1, node2))
->>>>>>> f93b4fac9b4540f4bf91046e346f4cc1e4aff976
-        self._edges.append((node1, node2))
+       node2 = 0
+       for node in self._nodes:
+           if node.val == val1:
+               node1 = node
+           if node.val == val2:
+               node2 = node
+       if node1 == 0:
+           node1 = Node(val1)
+           self._nodes.append(node1)
+       if node2 == 0:
+           node2 = Node(val2)
+           self._nodes.append(node2)
+       if node1 == node2:
+           raise ValueError("You cannot connect a node to itself")
+       for edge in self._edges:
+           if edge == (node1, node2):
+               return 'Edge already exists'
+       node1.neighbors.append((node1, node2))
+       node2.neighbors.append((node1, node2))
+       self._edges.append((node1, node2))
 
     def del_node(self, val):
         """Delete and remove edges."""
@@ -127,11 +106,8 @@ class Graph(object):
 class Node(object):
     """Graph node."""
 
-<<<<<<< HEAD
-    def __init__(self, val, neighbors):
-=======
     def __init__(self, val):
->>>>>>> f93b4fac9b4540f4bf91046e346f4cc1e4aff976
+
         """."""
         self.val = val
         self.neighbors = []
