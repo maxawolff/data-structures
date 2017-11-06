@@ -90,3 +90,18 @@ def test_que_size(new_queue):
 def test_que_size_empty(new_queue):
     """Test_que_size."""
     assert new_queue.size() == 0
+
+
+def test_dequeue_two_vals_head_is_correct(new_queue):
+    """Dequing should properly set head."""
+    new_queue.enqueue(3)
+    new_queue.enqueue(1)
+    new_queue.dequeue()
+    assert new_queue.head.val == 1
+
+
+def test_dequeue_one_vals_tail_is_correct(new_queue):
+    """Dequing should properly set head."""
+    new_queue.enqueue(3)
+    new_queue.dequeue()
+    assert new_queue.tail is None
