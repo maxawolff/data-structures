@@ -2,6 +2,7 @@
 
 from dll import DLL
 from que_ import Queue
+import pdb
 
 
 class Priorityq(DLL):
@@ -36,3 +37,13 @@ class Priorityq(DLL):
             return self._priority[0].head.val
         except IndexError:
             pass
+
+    def pop(self):
+        """Remove highest in q and return value."""
+        if self.peek():
+            res = self._priority[0].dequeue()
+            pdb.set_trace()
+            if len(self._priority[0]) == 0:
+                del self._priority[0]
+            return res
+        raise IndexError('Cannot pop from an empty q.')

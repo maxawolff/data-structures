@@ -109,3 +109,25 @@ def test_peek_several_vals(pq):
     pq.insert(1, 1)
     pq.insert(2, 5)
     assert pq.peek() == 2
+
+
+def test_empty_priorityq_pop(pq):
+    """."""
+    with pytest.raises(IndexError):
+        pq.pop()
+
+
+def test_list_pop(pq):
+    """."""
+    pq.insert(1, 1)
+    pq.insert(2, 5)
+    assert pq.pop() == 2
+
+
+def test_list_pop(pq):
+    """."""
+    pq.insert(1, 1)
+    pq.insert(2, 5)
+    pq.pop()
+    # pdb.set_trace()
+    assert len(pq._priority) == 1
