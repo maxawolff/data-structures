@@ -83,3 +83,29 @@ def test_q_insert_lower_priority(pq):
     pq.insert(1, 1)
     pq.insert(1, -1)
     assert pq.lowest == -1
+
+
+def test_queue_inserted_correct_order(pq):
+    """."""
+    pq.insert(1, 1)
+    pq.insert(1, 10)
+    assert pq._priority[0].priority == 10
+
+
+def test_queue_inserted_correct_order_2(pq):
+    """."""
+    pq.insert(1, 10)
+    pq.insert(1, 1)
+    assert pq._priority[0].priority == 10
+
+
+def test_peek_empty_priorityq(pq):
+    """."""
+    assert pq.peek() is None
+
+
+def test_peek_several_vals(pq):
+    """."""
+    pq.insert(1, 1)
+    pq.insert(2, 5)
+    assert pq.peek() == 2

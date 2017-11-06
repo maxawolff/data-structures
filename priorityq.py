@@ -24,8 +24,15 @@ class Priorityq(DLL):
                 return
         q = Queue(priority)
         q.enqueue(val)
+        for idx, queue in enumerate(self._priority):
+            if priority > self._priority[idx].priority:
+                self._priority.insert(idx, q)
+                return
         self._priority.append(q)
 
     def peek(self):
-        """."""
-        return self.head.val
+        """Return next item to be dequeued."""
+        try:
+            return self._priority[0].head.val
+        except IndexError:
+            pass
