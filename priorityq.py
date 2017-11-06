@@ -42,7 +42,6 @@ class Priorityq(DLL):
         """Remove highest in q and return value."""
         if self.peek():
             res = self._priority[0].dequeue()
-            pdb.set_trace()
             if len(self._priority[0]) == 0:
                 del self._priority[0]
             return res
