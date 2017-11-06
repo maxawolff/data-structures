@@ -27,9 +27,9 @@ class Priorityq(DLL):
                 self.head = current
                 return
         count = 0
-        pdb.set_trace()
+        # pdb.set_trace()
         while current.prev_node:
-            pdb.set_trace()
+            # pdb.set_trace()
             if current.prev_node.priority < current.priority:
                 # pdb.set_trace()
                 count += 1
