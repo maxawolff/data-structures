@@ -1,79 +1,48 @@
 """."""
 
 from dll import DLL
+from que_ import Queue
+import pdb
 
 
 class Priorityq(DLL):
-    """."""
+    """Class for priority queue."""
 
-    def insert(self, val, priority):
+    def __init__(self):
+        """Make a priority que."""
+        self._priority = []
+        self.lowest = 0
+
+    def insert(self, val, priority=None):
         """."""
-        super(Priorityq, self).append(val, priority=priority)
-        import pdb  # pdb.set_trace()
-        # if self.length > 1:
-        #     current = self.tail
-        current = self.tail
-        if current == self.head:
-            return
-        if current.prev_node is self.head:
-            if current.prev_node.priority < current.priority:
-                old_prev = current.prev_node
-                current.next_node = old_prev
-                current.prev_node = None
-                old_prev.next_node = None
-
-                old_prev.prev_node = current
-                self.tail = old_prev
-                self.head = current
+        if not priority:
+            priority = self.lowest
+        if priority < self.lowest:
+            self.lowest = priority
+        for queue in self._priority:
+            if priority == queue.priority:
+                queue.enqueue(val)
                 return
-        count = 0
-        # pdb.set_trace()
-        while current.prev_node:
-            # pdb.set_trace()
-            if current.prev_node.priority < current.priority:
-                # pdb.set_trace()
-                count += 1
-                print('in while loop, count is ', count)
-                old_prev = current.prev_node
-                # old_prev, current = current, old_prev
-                if current.next_node is None:  # current is tail
-                    old_prev.next_node = None
-                    if current.prev_node.prev_node:
-                        current.next_node = old_prev
-                        old_prev.prev_node.next_node = current
-                        current.prev_node = current.prev_node.prev_node
-                        old_prev.prev_node = current
-                        current.next_node = old_prev
-                        self.tail = old_prev
-                        current = current.prev_node  # current is being reasigned to incorect value
-                        print(self, 'in if current.next is none')
-                        continue
-                    else:
-                        return
-                elif current.prev_node.prev_node:
-                    current.next_node.prev_node = old_prev
-                    current.prev_node = old_prev.prev_node
-                    old_prev.prev_node.next_node = current
-                    old_prev.prev_node = current
-                    current.next_node = old_prev
-                    old_prev.next_node = old_prev.next_node.next_node
-                    current = current.prev_node
-                    print(self, "haven't hit head yet")
-                    continue
-                elif current.prev_node.prev_node is None:
-                    current.next_node.prev_node = old_prev
-                    current.prev_node = None
-                    old_prev.prev_node = current
-                    current.next_node = old_prev
-                    old_prev.next_node = old_prev.next_node.next_node
-                    self.head = current
-                    print(self, 'just reasigned head')
-                    return
-                else:
-                    return
-            else:
+        q = Queue(priority)
+        q.enqueue(val)
+        for idx, queue in enumerate(self._priority):
+            if priority > self._priority[idx].priority:
+                self._priority.insert(idx, q)
                 return
+        self._priority.append(q)
 
     def peek(self):
-        """."""
-        return self.head.val
+        """Return next item to be dequeued."""
+        try:
+            return self._priority[0].head.val
+        except IndexError:
+            pass
+
+    def pop(self):
+        """Remove highest in q and return value."""
+        if self.peek():
+            res = self._priority[0].dequeue()
+            if len(self._priority[0]) == 0:
+                del self._priority[0]
+            return res
+        raise IndexError('Cannot pop from an empty q.')
