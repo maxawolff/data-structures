@@ -10,6 +10,7 @@ class Priorityq(DLL):
     def __init__(self):
         """Make a priority que."""
         self._priority = []
+        self.lowest = 0
 
     def insert(self, val, priority):
         """."""
