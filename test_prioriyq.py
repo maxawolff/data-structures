@@ -3,6 +3,7 @@
 from priorityq import Priorityq
 import pytest
 from que_ import Queue
+import pdb
 
 
 @pytest.fixture
@@ -48,3 +49,37 @@ def test_queue_has_priority():
     """Queue should have priority attribute."""
     q = Queue(3)
     assert q.priority == 3
+
+
+def test_q_insert_1(pq):
+    """."""
+    pq.insert(1, 1)
+    assert pq._priority[0].priority == 1
+
+
+def test_q_insert_2(pq):
+    """."""
+    pq.insert(1, 1)
+    pq.insert(2, 1)
+    assert len(pq._priority[0]) == 2
+
+
+def test_q_insert_2_priorities(pq):
+    """."""
+    pq.insert(1, 1)
+    pq.insert(2, 0)
+    assert len(pq._priority) == 2
+
+
+def test_q_insert_2nodes_1_priority_default(pq):
+    """."""
+    pq.insert(1, 1)
+    pq.insert(2)
+    assert len(pq._priority) == 2
+
+
+def test_q_insert_lower_priority(pq):
+    """."""
+    pq.insert(1, 1)
+    pq.insert(1, -1)
+    assert pq.lowest == -1

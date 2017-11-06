@@ -12,13 +12,19 @@ class Priorityq(DLL):
         self._priority = []
         self.lowest = 0
 
-    def insert(self, val, priority):
+    def insert(self, val, priority=None):
         """."""
+        if not priority:
+            priority = self.lowest
+        if priority < self.lowest:
+            self.lowest = priority
         for queue in self._priority:
             if priority == queue.priority:
                 queue.enqueue(val)
                 return
-        self._priority.append(Queue(priority).enqueue(val))
+        q = Queue(priority)
+        q.enqueue(val)
+        self._priority.append(q)
 
     def peek(self):
         """."""
