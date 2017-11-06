@@ -147,3 +147,20 @@ def test_ll_search_one_val():
     ll = LinkedList()
     ll.push(2)
     assert ll.search(2).val == 2
+
+
+def test_1_val_pop():
+    """Test to make sure head gets propperly assigned."""
+    ll = LinkedList()
+    ll.push(1)
+    ll.pop()
+    assert ll.head is None
+
+
+def test_2_val_pop():
+    """Test to make sure head gets propperly assigned."""
+    ll = LinkedList()
+    ll.push(1)
+    ll.push(3)
+    ll.pop()
+    assert ll.head.val == 1

@@ -22,7 +22,10 @@ class LinkedList(object):
         if self.head is None:
             raise IndexError("List is empty, cannot pop from an empty list")
         val = self.head
-        self.head = self.head.next_node
+        if self.head.next_node:
+            self.head = self.head.next_node
+            return val
+        self.head = None
         self.length -= 1
         return val
 
