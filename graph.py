@@ -152,3 +152,46 @@ class Node(object):
         """."""
         self.val = val
         self.neighbors = []
+
+
+if __name__ == '__main__':
+    g1 = Graph()
+    g1.add_edge(1, 2)
+    g1.add_edge(1, 3)
+    g1.add_edge(2, 4)
+    g1.add_edge(2, 5)
+    g1.add_edge(3, 6)
+    g1.add_edge(3, 7)
+
+    print("traversal of a normal graph")
+    print("depth first traversal, ", g1.depth_first_traversal(1))
+    print("breadth first traversal, ", g1.breadth_first_traversal(1))
+
+    g2 = Graph()
+    g2.add_edge(1, 2)
+    g2.add_edge(1, 3)
+    g2.add_edge(1, 4)
+    g2.add_edge(2, 5)
+    g2.add_edge(2, 6)
+    g2.add_edge(5, 8)
+    g2.add_edge(8, 10)
+    g2.add_edge(4, 7)
+    g2.add_edge(7, 9)
+
+    print("traversal of an unbalanced graph")
+    print("depth first traversal, ", g2.depth_first_traversal(1))
+    print("breadth first traversal, ", g2.breadth_first_traversal(1))
+
+    g3 = Graph()
+    g3.add_edge(1, 2)
+    g3.add_edge(1, 3)
+    g3.add_edge(2, 4)
+    g3.add_edge(2, 5)
+    g3.add_edge(4, 6)
+    g3.add_edge(6, 2)
+    g3.add_edge(3, 7)
+    g3.add_edge(4, 7)
+
+    print("traversal of an circular graph")
+    print("depth first traversal, ", g3.depth_first_traversal(1))
+    print("breadth first traversal, ", g3.breadth_first_traversal(1))

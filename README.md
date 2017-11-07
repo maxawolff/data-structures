@@ -11,11 +11,11 @@
   - Single linked list
   - Stack
   - Doubly linked list
-- Method time complexity
-  - push() O(1)
-  - pop() O(1)
-  - Double linked list
+  - Graph
   - Queue
+  - Dequeue
+  - priority queue
+  - binary heap
 - Method time complexity
   - push() O(1)
   - pop() O(1)
@@ -33,6 +33,17 @@
   - dequeue() O(1)
   - peek() O(1)
   - peekleft() O(1)
+  - nodes() O(1)
+  - edges() O(1)
+  - add_node() O(n)
+  - add_edge() O(n)
+  - del_node() O(n^2)
+  - del_edge() O(n^2)
+  - has_node() O(n)
+  - neighbors() O(n)
+  - adjacent() O(n)
+  - depth_first_traversal() O(n^2)
+  - breadth_first_traversal() O(n^2)
 
 ## Getting Started
 <!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->

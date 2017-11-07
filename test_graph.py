@@ -220,6 +220,7 @@ def test_graph_depth_first_large_2():
 
 
 def test_circular():
+    """."""
     ng = Graph()
     ng.add_edge(1, 2)
     ng.add_edge(1, 3)
@@ -228,7 +229,7 @@ def test_circular():
     assert ng.depth_first_traversal(1) == [1, 3, 2]
 
 
-def test_circular():
+def test_circular_more_complex():
     """."""
     ng = Graph()
     ng.add_edge(1, 2)
@@ -289,3 +290,43 @@ def test_graph_breadth_first_unbalanced_different_order():
     ng.add_edge(1, 3)
     ng.add_edge(4, 7)
     assert ng.breadth_first_traversal(1) == [1, 2, 4, 3, 5, 6, 7, 8, 9, 10]
+
+
+def test_graph_breadth_first_large_start_at_2():
+    """."""
+    ng = Graph()
+    ng.add_edge(1, 2)
+    ng.add_edge(1, 3)
+    ng.add_edge(2, 4)
+    ng.add_edge(2, 5)
+    ng.add_edge(3, 6)
+    ng.add_edge(3, 7)
+    ng.add_edge(4, 8)
+    ng.add_edge(4, 9)
+    ng.add_edge(5, 10)
+    ng.add_edge(5, 11)
+    ng.add_edge(6, 12)
+    ng.add_edge(6, 13)
+    ng.add_edge(7, 14)
+    ng.add_edge(7, 15)
+    assert ng.breadth_first_traversal(2) == [2, 4, 5, 8, 9, 10, 11]
+
+
+def test_graph_depth_first_large_2_start_at_2():
+    """."""
+    ng = Graph()
+    ng.add_edge(1, 2)
+    ng.add_edge(1, 3)
+    ng.add_edge(2, 4)
+    ng.add_edge(2, 5)
+    ng.add_edge(3, 6)
+    ng.add_edge(3, 7)
+    ng.add_edge(4, 8)
+    ng.add_edge(4, 9)
+    ng.add_edge(5, 10)
+    ng.add_edge(5, 11)
+    ng.add_edge(6, 12)
+    ng.add_edge(6, 13)
+    ng.add_edge(7, 14)
+    ng.add_edge(7, 15)
+    assert ng.depth_first_traversal(2) == [2, 5, 11, 10, 4, 9, 8]
