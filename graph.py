@@ -71,7 +71,6 @@ class Graph(object):
             if edge[0].val == val1 and edge[1].val == val2:
                 self._edges.remove(edge)
                 del_node1 = edge[0]
-                del_node2 = edge[1]
             else:
                 return 'edge not found'
         for node in self._nodes:
@@ -84,7 +83,7 @@ class Graph(object):
         for node in self._nodes:
             if node.val == val:
                 return node
-            raise ValueError('node not found')
+        raise ValueError('node not found')
 
     def neighbors(self, val):
         """Return list of neighbors for the given node."""
@@ -124,13 +123,32 @@ class Graph(object):
 
     def breadth_first_traversal(self, start_val):
         """."""
+        if not self.has_node(start_val):
+            raise ValueError('node not found')
+        current = self.has_node(start_val)
+        res = [current.val]
+        unvisited = []
+        for neighbor in current.neighbors:
+            if neighbor[0] == current:
+                unvisited.append(neighbor[1])
+
+        while unvisited:
+            current = unvisited[0]
+            unvisited.remove(current)
+            # import pdb; pdb.set_trace()
+            if current.val not in res:
+                res.append(current.val)
+            for neighbor in current.neighbors:
+                if neighbor[0] == current:
+                    if not neighbor[1].val in res:
+                        unvisited.append(neighbor[1])
+        return res
 
 
 class Node(object):
     """Graph node."""
 
     def __init__(self, val):
-
         """."""
         self.val = val
         self.neighbors = []
