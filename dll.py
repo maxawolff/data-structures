@@ -42,8 +42,12 @@ class DLL(LinkedList):
         if self.head is None:
             raise IndexError("List is empty, cannot pop from an empty list")
         val = self.head.val
-        self.head = self.head.next_node
-        self.head.prev_node = None
+        if self.head.next_node:
+            self.head = self.head.next_node
+            self.head.prev_node = None
+        else:
+            self.head = None
+            self.tail = None
         self.length -= 1
         return val
 
@@ -52,8 +56,12 @@ class DLL(LinkedList):
         if self.head is None:
             raise IndexError("List is empty, cannot pop from an empty list")
         val = self.tail.val
-        self.tail = self.tail.prev_node
-        self.tail.next_node = None
+        if self.tail.prev_node:
+            self.tail = self.tail.prev_node
+            self.tail.next_node = None
+        else:
+            self.head = None
+            self.tail = None
         self.length -= 1
         return val
 
