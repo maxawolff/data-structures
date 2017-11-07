@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/maxawolff/data-structures.svg?branch=master)](https://travis-ci.org/maxawolff/data-structures)
+
 # Implement Data Structures In Python
 
 - **Max Wolff & Chris Closser**
@@ -12,6 +14,12 @@
 - Method time complexity
   - push() O(1)
   - pop() O(1)
+  - Double linked list
+  - Queue
+- Method time complexity
+  - push() O(1)
+  - pop() O(1)
+  - popleft() O(1)
   - search() O(n)
   - remove() O(n)
   - size() O(1)
@@ -19,10 +27,13 @@
   - len() O(1)
   - print() O(n)
   - append() O(1)
+  - appendleft() O(1)
   - shift() O(1)
   - enqueue() O(1)
   - dequeue() O(1)
   - peek() O(1)
+  - peekleft() O(1)
+
 ## Getting Started
 <!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
   You can fork or clone the repository [here](https://github.com/maxawolff/data-structures)
@@ -77,6 +88,14 @@ Oct 25 17 1640hrs dll.pop
                   README
 
 Oct 25 17 1700hrs dll.pop, dll.shift, dll.append, dll.remove
+                  Testing
+                  README
+
+Oct 25 17 1800hrs que_ enqueue() dequeue() peek()
+                  Testing
+                  README
+
+Oct 30 17 1300hrs deque
                   Testing
                   README
 </pre>
