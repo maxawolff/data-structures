@@ -33,7 +33,7 @@ def test_node_neighbors(new_node):
 
 
 def test_insert_1node(new_graph):
-    """."""
+    """Test_insert_1node."""
     new_graph.add_node(1)
     assert new_graph._nodes[0].val == 1
 
@@ -44,7 +44,7 @@ def test_newgraph_scope(new_graph):
 
 
 def test_insert_duplicate_node_raises_error(new_graph):
-    """."""
+    """Test_insert_duplicate_node_raises_error."""
     new_graph.add_node(1)
     with pytest.raises(ValueError):
         new_graph.add_node(1)
@@ -99,14 +99,14 @@ def test_add_edge_existing_node(new_graph):
 
 
 def test_del_node_deletes_nodes(new_graph):
-    """."""
+    """Test_del_node_deletes_nodes."""
     new_graph.add_node(1)
     new_graph.del_node(1)
     assert new_graph._nodes == []
 
 
 def test_del_node_deletes_node_1(new_graph):
-    """."""
+    """Test_del_node_deletes_node_1."""
     new_graph.add_node(1)
     new_graph.add_node(2)
     new_graph.del_node(1)
@@ -114,7 +114,7 @@ def test_del_node_deletes_node_1(new_graph):
 
 
 def test_del_node_deltes_edge(new_graph):
-    """."""
+    """Test_del_node_deltes_edge."""
     ng = Graph()
     ng.add_edge(1, 2)
     ng.del_node(1)
@@ -122,7 +122,7 @@ def test_del_node_deltes_edge(new_graph):
 
 
 def test_del_node_deltes_neighbor(new_graph):
-    """."""
+    """Test_del_node_deltes_neighbor."""
     ng = Graph()
     ng.add_edge(1, 2)
     node1 = ng._nodes[0]
@@ -132,7 +132,7 @@ def test_del_node_deltes_neighbor(new_graph):
 
 
 def test_only_one_edge(new_graph):
-    """."""
+    """Test_only_one_edge."""
     ng = Graph()
     ng.add_edge(1, 2)
     node1 = ng._nodes[0]
@@ -141,7 +141,7 @@ def test_only_one_edge(new_graph):
 
 
 def test_neighbors_function_returns_list_of_neighbors(new_graph):
-    """."""
+    """Test_neighbors_function_returns_list_of_neighbors."""
     ng = Graph()
     ng.add_edge(1, 2)
     node1 = ng._nodes[0]
@@ -150,14 +150,14 @@ def test_neighbors_function_returns_list_of_neighbors(new_graph):
 
 
 def test_adjacent_returns_true(new_graph):
-    """."""
+    """Test_adjacent_returns_true."""
     ng = Graph()
     ng.add_edge(1, 2)
     assert ng.adjacent(1, 2) is True
 
 
 def test_remove_edge(new_graph):
-    """."""
+    """Test_remove_edge."""
     ng = Graph()
     ng.add_edge(1, 2)
     ng.del_edge(1, 2)
@@ -165,7 +165,7 @@ def test_remove_edge(new_graph):
 
 
 def test_remove_edge_also_removes_neighbors():
-    """."""
+    """Test_remove_edge_also_removes_neighbors."""
     ng = Graph()
     ng.add_edge(1, 2)
     node1 = ng._nodes[0]
@@ -175,14 +175,14 @@ def test_remove_edge_also_removes_neighbors():
 
 
 def test_graph_depth_first():
-    """."""
+    """Test_graph_depth_first."""
     ng = Graph()
     ng.add_edge(1, 2)
     assert ng.depth_first_traversal(1) == [1, 2]
 
 
 def test_graph_depth_first_large():
-    """."""
+    """Test_graph_depth_first_large."""
     ng = Graph()
     ng.add_edge(1, 2)
     ng.add_edge(1, 7)
@@ -200,7 +200,7 @@ def test_graph_depth_first_large():
 
 
 def test_graph_depth_first_large_2():
-    """."""
+    """Test_graph_depth_first_large_2."""
     ng = Graph()
     ng.add_edge(1, 2)
     ng.add_edge(1, 3)
@@ -220,7 +220,7 @@ def test_graph_depth_first_large_2():
 
 
 def test_circular():
-    """."""
+    """Test_circular."""
     ng = Graph()
     ng.add_edge(1, 2)
     ng.add_edge(1, 3)
@@ -230,7 +230,7 @@ def test_circular():
 
 
 def test_circular_more_complex():
-    """."""
+    """Test_circular_more_complex."""
     ng = Graph()
     ng.add_edge(1, 2)
     ng.add_edge(1, 3)
@@ -243,7 +243,7 @@ def test_circular_more_complex():
 
 
 def test_graph_breadth_first_large():
-    """."""
+    """Test_graph_breadth_first_large."""
     ng = Graph()
     ng.add_edge(1, 2)
     ng.add_edge(1, 3)
@@ -263,7 +263,7 @@ def test_graph_breadth_first_large():
 
 
 def test_graph_breadth_first_unbalanced():
-    """."""
+    """Test_graph_breadth_first_unbalanced."""
     ng = Graph()
     ng.add_edge(1, 2)
     ng.add_edge(1, 3)
@@ -278,7 +278,7 @@ def test_graph_breadth_first_unbalanced():
 
 
 def test_graph_breadth_first_unbalanced_different_order():
-    """."""
+    """Test_graph_breadth_first_unbalanced_different_order."""
     ng = Graph()
     ng.add_edge(8, 10)
     ng.add_edge(1, 2)
@@ -293,7 +293,7 @@ def test_graph_breadth_first_unbalanced_different_order():
 
 
 def test_graph_breadth_first_large_start_at_2():
-    """."""
+    """Test_graph_breadth_first_large_start_at_2."""
     ng = Graph()
     ng.add_edge(1, 2)
     ng.add_edge(1, 3)
@@ -313,7 +313,7 @@ def test_graph_breadth_first_large_start_at_2():
 
 
 def test_graph_depth_first_large_2_start_at_2():
-    """."""
+    """Test_graph_depth_first_large_2_start_at_2."""
     ng = Graph()
     ng.add_edge(1, 2)
     ng.add_edge(1, 3)
@@ -330,3 +330,24 @@ def test_graph_depth_first_large_2_start_at_2():
     ng.add_edge(7, 14)
     ng.add_edge(7, 15)
     assert ng.depth_first_traversal(2) == [2, 5, 11, 10, 4, 9, 8]
+
+
+def test_zero_edge_weight():
+    """Test default weight."""
+    ng = Graph()
+    ng.add_edge(1, 2)
+    assert ng._edges[0][2] == 0
+
+
+def test_edge_weight():
+    """Test correct weight."""
+    ng = Graph()
+    ng.add_edge(1, 2, 1)
+    assert ng._edges[0][2] == 1
+
+
+def test_edge_weight_not_num():
+    """Test incorrect weight."""
+    ng = Graph()
+    with pytest.raises(ValueError):
+        ng.add_edge(1, 2, 'qwoei')

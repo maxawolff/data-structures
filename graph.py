@@ -26,8 +26,10 @@ class Graph(object):
                 raise ValueError("Nodes must have unique values")
         self._nodes.append(Node(val))
 
-    def add_edge(self, val1, val2):
+    def add_edge(self, val1, val2, weight=0):
         """Add a connection between two nodes, val1 points to val2."""
+        if not isinstance(weight, (int, float)):
+            raise ValueError('weight must be int or float')
         node1 = 0
         node2 = 0
         for node in self._nodes:
@@ -44,11 +46,11 @@ class Graph(object):
         if node1 == node2:
             raise ValueError("You cannot connect a node to itself")
         for edge in self._edges:
-            if edge == (node1, node2):
+            if edge == (node1, node2, weight):
                 return 'Edge already exists'
-        node1.neighbors.append((node1, node2))
-        node2.neighbors.append((node1, node2))
-        self._edges.append((node1, node2))
+        node1.neighbors.append((node1, node2, weight))
+        node2.neighbors.append((node1, node2, weight))
+        self._edges.append((node1, node2, weight))
 
     def del_node(self, val):
         """Delete and remove edges."""
