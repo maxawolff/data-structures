@@ -101,7 +101,7 @@ class Graph(object):
                 return False
 
     def depth_first_traversal(self, start_val):
-        """."""
+        """Find all reachable node values."""
         if not self.has_node(start_val):
             raise ValueError('node not found')
         current = self.has_node(start_val)
@@ -122,6 +122,57 @@ class Graph(object):
                     if not neighbor[1].val in res:
                         unvisited.append(neighbor[1])
         return res
+
+    def depth_first_traversal2(self, start_val):
+        """Find all reachable nodes."""
+        if not self.has_node(start_val):
+            raise ValueError('node not found')
+        current = self.has_node(start_val)
+        res = [current]
+        unvisited = []
+        for neighbor in current.neighbors:
+            if neighbor[0] == current:
+                unvisited.append(neighbor[1])
+
+        while unvisited:
+            current = unvisited[-1]
+            unvisited.remove(current)
+            # import pdb; pdb.set_trace()
+            if current not in res:
+                res.append(current)
+            for neighbor in current.neighbors:
+                if neighbor[0] == current:
+                    if not neighbor[1] in res:
+                        unvisited.append(neighbor[1])
+        return res
+
+    def depth_first_traversal3(self, start_val):
+        """Find all reachable nodes."""
+        if not self.has_node(start_val):
+            raise ValueError('node not found')
+        current = self.has_node(start_val)
+        res = [current]
+        unvisited = []
+        for neighbor in current.neighbors:
+            if neighbor[0] == current:
+                unvisited.append(neighbor[1])
+
+        while unvisited:
+            current = unvisited[-1]
+            unvisited.remove(current)
+            # import pdb; pdb.set_trace()
+            if current not in res:
+                res.append(current)
+            for neighbor in current.neighbors:
+                if neighbor[0] == current:
+                    if not neighbor[1] in res:
+                        unvisited.append(neighbor[1])
+        rval = []
+        for node in res:
+            for neighbor in node.neighbors:
+                if neighbor not in rval:
+                    rval.append(neighbor)
+        return rval
 
     def breadth_first_traversal(self, start_val):
         """."""
@@ -145,6 +196,41 @@ class Graph(object):
                     if not neighbor[1].val in res:
                         unvisited.append(neighbor[1])
         return res
+
+    def dijkstra(self, start_val):
+        """."""
+        try:
+            start_node = self.has_node(start_val)
+        except ValueError:
+            return "Node not in graph"
+        # unvisited = []
+        # res = self.depth_first_traversal2(start_val)
+        # for node in res:
+        #     unvisited.setdefault(node, [])
+        # current = start_node
+        # del unvisited[current]
+        # shortest_path = {current.val: [(current.val, 0)]}
+        # current_path = [(current.val, 0)]
+        # shortest_edge = 0
+        # while unvisited:
+        #     shortest = 1000000000000
+        #     for neighbor in current.neighbors:
+        #         if neighbor[2] < shortest:
+        #             shortest = neighbor[2]
+        #             shortest_edge = neighbor
+        #     current = shortest_edge[1]
+        #     current_path.append((shortest_edge[1].val, shortest_edge[2]))
+        #     del unvisited[current]
+        # return current_path
+        unodes = self.depth_first_traversal2(start_val)
+        uedges = self.depth_first_traversal3(start_val)
+        current = start_node
+        shortest_path = {}
+        for node in unodes:
+            shortest_path.setdefault(node.val, (0, 0))
+        unodes.remove(start_node)
+        pdb.set_trace()
+
 
 
 class Node(object):

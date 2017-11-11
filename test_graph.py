@@ -17,6 +17,33 @@ def new_node():
     return Node(1)
 
 
+@pytest.fixture
+def dgraph():
+    """Graph to use with diskstas algorithm."""
+    g = Graph()
+    g.add_edge('A', 'B', 12)
+    g.add_edge('A', 'C', 5)
+    g.add_edge('C', 'B', 3)
+    g.add_edge('C', 'D', 10)
+    g.add_edge('B', 'D', 1)
+    return g
+
+
+@pytest.fixture
+def g3():
+    """Graph to use with diskstas algorithm."""
+    g = Graph()
+    g.add_edge('A', 'B', 2)
+    g.add_edge('A', 'C', 1)
+    g.add_edge('B', 'C', 9)
+    g.add_edge('B', 'E', 6)
+    g.add_edge('C', 'D', 4)
+    g.add_edge('D', 'F', 8)
+    g.add_edge('E', 'D', 1)
+    g.add_edge('E', 'F', 3)
+    return g
+
+
 def test_new_emty_graph_nodes(new_graph):
     """Test_new_emty_graph_nodes."""
     assert new_graph._nodes == []
@@ -351,3 +378,24 @@ def test_edge_weight_not_num():
     ng = Graph()
     with pytest.raises(ValueError):
         ng.add_edge(1, 2, 'qwoei')
+
+
+def test_dijkstra(dgraph):
+    """."""
+    res = dgraph.dijkstra('A')
+    pdb.set_trace()
+
+
+def test_traversal2(dgraph):
+    """."""
+    res = dgraph.depth_first_traversal2("A")
+    for node in res:
+        print(node.val)
+    assert len(res) == 4
+
+
+def test_all_reachable_edges(g3):
+    """."""
+    res = g3.depth_first_traversal3("A")
+    assert len(res) == 8
+    print(res)
