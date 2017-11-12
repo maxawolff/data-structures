@@ -225,11 +225,20 @@ class Graph(object):
         unodes = self.depth_first_traversal2(start_val)
         uedges = self.depth_first_traversal3(start_val)
         current = start_node
-        shortest_path = {}
+        return_path = {}
+        tracked_path = []
+        current_path = 0
         for node in unodes:
-            shortest_path.setdefault(node.val, (0, 0))
+            return_path.setdefault(node.val, [[], 1000000])
         unodes.remove(start_node)
         pdb.set_trace()
+        while uedges:
+            for edge in current.neighbors:
+                node = edge[1]
+                weight = edge[2]
+                current_path = edge
+                if return_path[node][-1] > weight:
+                    return_path[node][0] = current_path
 
 
 
