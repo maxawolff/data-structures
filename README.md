@@ -17,22 +17,45 @@
   - priority queue
   - binary heap
 - Method time complexity
+
+- Linked List
   - push() O(1)
   - pop() O(1)
-  - popleft() O(1)
   - search() O(n)
   - remove() O(n)
   - size() O(1)
   - display() O(n)
   - len() O(1)
   - print() O(n)
+- Double Linked List
+  - push() O(1)
+  - pop() O(1)
   - append() O(1)
-  - appendleft() O(1)
   - shift() O(1)
+  - remove() O(n)
+- Stack
+  - push() O(1)
+  - pop() O(1)
+  - print() O(n)
+- Queue
   - enqueue() O(1)
   - dequeue() O(1)
   - peek() O(1)
+- Dequeue
+  - enqueue() O(1)
+  - dequeue() O(1)
+  - peek() O(1)
+  - popleft() O(1)
+  - appendleft() O(1)
   - peekleft() O(1)
+- Priority Queue
+  - peek() O(1)
+  - insert() O(1)
+  - pop() O(1)
+- Binary Heap
+  - push() O(log(n))
+  - pop() O(log(n))
+- Graph
   - nodes() O(1)
   - edges() O(1)
   - add_node() O(n)
@@ -44,6 +67,8 @@
   - adjacent() O(n)
   - depth_first_traversal() O(n^2)
   - breadth_first_traversal() O(n^2)
+
+
 
 ## Getting Started
 <!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
