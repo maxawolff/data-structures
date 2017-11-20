@@ -414,13 +414,6 @@ def test_traversal2(dgraph):
     assert len(res) == 4
 
 
-def test_all_reachable_edges(g3):
-    """."""
-    res = g3.depth_first_traversal3("A")
-    assert len(res) == 8
-    print(res)
-
-
 def test_dijkstra_g3_f(g3):
     """."""
     res = g3.dijkstra('A')

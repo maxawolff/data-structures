@@ -146,34 +146,6 @@ class Graph(object):
                         unvisited.append(neighbor[1])
         return res
 
-    def depth_first_traversal3(self, start_val):
-        """Find all reachable nodes."""
-        if not self.has_node(start_val):
-            raise ValueError('node not found')
-        current = self.has_node(start_val)
-        res = [current]
-        unvisited = []
-        for neighbor in current.neighbors:
-            if neighbor[0] == current:
-                unvisited.append(neighbor[1])
-
-        while unvisited:
-            current = unvisited[-1]
-            unvisited.remove(current)
-            # import pdb; pdb.set_trace()
-            if current not in res:
-                res.append(current)
-            for neighbor in current.neighbors:
-                if neighbor[0] == current:
-                    if not neighbor[1] in res:
-                        unvisited.append(neighbor[1])
-        rval = []
-        for node in res:
-            for neighbor in node.neighbors:
-                if neighbor not in rval:
-                    rval.append(neighbor)
-        return rval
-
     def breadth_first_traversal(self, start_val):
         """."""
         if not self.has_node(start_val):
