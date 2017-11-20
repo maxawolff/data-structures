@@ -44,6 +44,24 @@ def g3():
     return g
 
 
+@pytest.fixture
+def g4():
+    """Graph to use with diskstas algorithm."""
+    g = Graph()
+    g.add_edge('A', 'B', 4)
+    g.add_edge('A', 'C', 3)
+    g.add_edge('A', 'E', 7)
+    g.add_edge('B', 'C', 6)
+    g.add_edge('B', 'D', 5)
+    g.add_edge('C', 'D', 11)
+    g.add_edge('C', 'E', 8)
+    g.add_edge('E', 'D', 1)
+    g.add_edge('D', 'F', 2)
+    g.add_edge('E', 'G', 5)
+    g.add_edge('D', 'G', 10)
+    return g
+
+
 def test_new_emty_graph_nodes(new_graph):
     """Test_new_emty_graph_nodes."""
     assert new_graph._nodes == []
@@ -383,14 +401,16 @@ def test_edge_weight_not_num():
 def test_dijkstra(dgraph):
     """."""
     res = dgraph.dijkstra('A')
-    pdb.set_trace()
+    assert res['D'] == ['A', 'C', 'B', 'D', 9]
+    assert res['A'] == ['A', 0]
+    assert res['B'] == ['A', 'C', 'B', 8]
 
 
 def test_traversal2(dgraph):
     """."""
     res = dgraph.depth_first_traversal2("A")
     for node in res:
-        print(node.val)
+        print(node)
     assert len(res) == 4
 
 
@@ -399,3 +419,52 @@ def test_all_reachable_edges(g3):
     res = g3.depth_first_traversal3("A")
     assert len(res) == 8
     print(res)
+
+
+def test_dijkstra_g3_f(g3):
+    """."""
+    res = g3.dijkstra('A')
+    assert res['F'] == ['A', 'B', 'E', 'F', 11]
+
+
+def test_dijkstra_g3_e(g3):
+    """."""
+    res = g3.dijkstra('A')
+    assert res['E'] == ['A', 'B', 'E', 8]
+
+
+def test_dijkstra_g3_d(g3):
+    """."""
+    res = g3.dijkstra('A')
+    assert res['D'] == ['A', 'C', 'D', 5]
+
+
+def test_dijkstra_g4_g(g4):
+    """."""
+    res = g4.dijkstra('A')
+    assert res['G'] == ['A', 'E', 'G', 12]
+
+
+def test_dijkstra_g4_f(g4):
+    """."""
+    res = g4.dijkstra('A')
+    assert res['F'] == ['A', 'E', 'D', 'F', 10]
+
+
+def test_dijkstra_g4_f_start_at_c(g4):
+    """."""
+    res = g4.dijkstra('C')
+    assert res['F'] == ['C', 'E', 'D', 'F', 11]
+
+
+def test_dijkstra_g4_g_start_at_c(g4):
+    """."""
+    res = g4.dijkstra('C')
+    assert res['G'] == ['C', 'E', 'G', 13]
+
+
+def test_dijkstra_g4_start_at_c_no_a(g4):
+    """."""
+    res = g4.dijkstra('C')
+    with pytest.raises(KeyError):
+        res["A"]

@@ -200,46 +200,40 @@ class Graph(object):
     def dijkstra(self, start_val):
         """."""
         try:
-            start_node = self.has_node(start_val)
+            current_node = self.has_node(start_val)
         except ValueError:
             return "Node not in graph"
-        # unvisited = []
-        # res = self.depth_first_traversal2(start_val)
-        # for node in res:
-        #     unvisited.setdefault(node, [])
-        # current = start_node
-        # del unvisited[current]
-        # shortest_path = {current.val: [(current.val, 0)]}
-        # current_path = [(current.val, 0)]
-        # shortest_edge = 0
-        # while unvisited:
-        #     shortest = 1000000000000
-        #     for neighbor in current.neighbors:
-        #         if neighbor[2] < shortest:
-        #             shortest = neighbor[2]
-        #             shortest_edge = neighbor
-        #     current = shortest_edge[1]
-        #     current_path.append((shortest_edge[1].val, shortest_edge[2]))
-        #     del unvisited[current]
-        # return current_path
-        unodes = self.depth_first_traversal2(start_val)
-        uedges = self.depth_first_traversal3(start_val)
-        current = start_node
-        return_path = {}
-        tracked_path = []
-        current_path = 0
-        for node in unodes:
-            return_path.setdefault(node.val, [[], 1000000])
-        unodes.remove(start_node)
-        pdb.set_trace()
-        while uedges:
-            for edge in current.neighbors:
-                node = edge[1]
-                weight = edge[2]
-                current_path = edge
-                if return_path[node][-1] > weight:
-                    return_path[node][0] = current_path
+        to_visit = self.depth_first_traversal2(current_node.val)
+        shortest_path = {}
+        for node in to_visit:
+            shortest_path[node.val] = [current_node.val, 1000000]
+        shortest_path[current_node.val] = [current_node.val, 0]
+        to_visit.remove(current_node)
+        to_visit_values = []
+        for node in to_visit:
+            to_visit_values.append(node.val)
+        while to_visit:
+            for node in current_node.neighbors:
+                old_path = shortest_path[current_node.val]
+                path = old_path[0: -1]
+                part2 = node[1].val
+                part3 = old_path[-1] + node[-1]
+                path.append(part2)
+                path.append(part3)
+                if path[-1] < shortest_path[node[1].val][-1]:
+                    shortest_path[node[1].val] = path
 
+            next_path = ['!', 999999]
+            for node in shortest_path:
+                if shortest_path[node][-1] < next_path[-1] and node in to_visit_values:
+                    next_path = shortest_path[node]
+            next_val = next_path[-2]
+            for node in to_visit:
+                if node.val == next_val:
+                    current_node = node
+            to_visit.remove(current_node)
+            to_visit_values.remove(next_val)
+        return shortest_path
 
 
 class Node(object):
