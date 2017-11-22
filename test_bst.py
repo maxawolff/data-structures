@@ -1,5 +1,6 @@
 """Test for bst."""
 import pytest
+import pdb
 
 
 @pytest.fixture
@@ -75,3 +76,39 @@ def test_bst_d1_add_left_left_left_and_right(bst_d1):
     bst_d1.insert(4)
     assert bst_d1.head.left.left.left.value == 2
     assert bst_d1.head.left.left.left.right.value == 4
+
+
+def test_empty_bst_depth_0():
+    """An empty bst should have depth 0."""
+    from bst import BST
+    b = BST()
+    assert b.depth == 0
+
+
+def test_bst_depth_of_one(new_bst):
+    """Bst with one node should have depth of 1."""
+    assert new_bst.depth == 1
+    assert new_bst.head.depth == 1
+
+
+def test_bst_depth_two_nodes_is_2(new_bst):
+    """Bst with one node should have depth of 1."""
+    new_bst.insert(1)
+    assert new_bst.depth == 2
+    assert new_bst.head.left.depth == 2
+
+
+def test_bst_depth_three_nodes_is_2_when_balanced(new_bst):
+    """Bst with one node should have depth of 1."""
+    new_bst.insert(1)
+    new_bst.insert(30)
+    assert new_bst.depth == 2
+    assert new_bst.head.right.depth == 2
+
+
+def test_bst_depth_three_nodes_is_3_when_unbalanced(new_bst):
+    """Bst with one node should have depth of 1."""
+    new_bst.insert(1)
+    new_bst.insert(5)
+    assert new_bst.depth == 3
+    assert new_bst.head.left.right.depth == 3
