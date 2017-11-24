@@ -22,7 +22,7 @@ class BST(object):
         self.head = None
         self.left_depth = 0
         self.right_depth = 0
-        self.depth = 0
+        self._depth = 0
         self.nodes = []
 
     def insert(self, val):
@@ -30,7 +30,7 @@ class BST(object):
         if self.head is None:
             new_node = Node(val, depth=1)
             self.head = new_node
-            self.depth = 1
+            self._depth = 1
             self.nodes.append(new_node)
         current_node = self.head
         if val == self.head.value:
@@ -45,8 +45,8 @@ class BST(object):
                     new_node = Node(val, depth=current_depth)
                     current_node.left = new_node
                     self.nodes.append(new_node)
-                    if current_depth > self.depth:
-                        self.depth = current_depth
+                    if current_depth > self._depth:
+                        self._depth = current_depth
                     return
             elif val > current_node.value:
                 if current_node.right:
@@ -56,8 +56,8 @@ class BST(object):
                     new_node = Node(val, depth=current_depth)
                     current_node.right = new_node
                     self.nodes.append(new_node)
-                    if current_depth > self.depth:
-                        self.depth = current_depth
+                    if current_depth > self._depth:
+                        self._depth = current_depth
                     return
             elif val == current_node.value:
                 return
@@ -67,3 +67,7 @@ class BST(object):
         for node in self.nodes:
             if node.value == val:
                 return node
+
+    def depth(self):
+        """Return the depth of a bst."""
+        return self._depth
