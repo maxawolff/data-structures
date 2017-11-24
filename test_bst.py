@@ -154,3 +154,59 @@ def test_contains_several_nodes(bst_d1):
 def test_contains_several_nodes_wrong_node(bst_d1):
     """Searching for a node not present returns none."""
     assert bst_d1.contains(100000) is False
+
+
+def test_balance_no_nodes():
+    """Balance of empty tree should be 0."""
+    from bst import BST
+    b = BST()
+    assert b.balance() == 0
+
+
+def test_balance_one_node(new_bst):
+    """A bst with one node should be balanced."""
+    assert new_bst.balance() == 0
+
+
+def test_balance_balanced_bst(bst_d1):
+    """Should be 0 since balanced."""
+    print(bst_d1.left_depth)
+    print(bst_d1.right_depth)
+    assert bst_d1.balance() == 0
+
+
+def test_balance_unbalanced_left(new_bst):
+    """Should have -1 balanced since depth higher in left."""
+    new_bst.insert(10)
+    assert new_bst.balance() == -1
+
+
+def test_balance_unbalanced_right(new_bst):
+    """Should have -1 balanced since depth higher in left."""
+    new_bst.insert(30)
+    assert new_bst.balance() == 1
+
+
+def test_balance_unbalanced_right_by_two(new_bst):
+    """Should have -1 balanced since depth higher in left."""
+    new_bst.insert(30)
+    new_bst.insert(35)
+    assert new_bst.balance() == 2
+
+
+def test_balance_unbalanced_right_by_three(new_bst):
+    """Should have -1 balanced since depth higher in left."""
+    new_bst.insert(30)
+    new_bst.insert(35)
+    new_bst.insert(32)
+    assert new_bst.balance() == 3
+    assert new_bst.right_depth == 4
+
+
+def test_balance_unbalanced_right_by_two_four_nodes(new_bst):
+    """Should have -1 balanced since depth higher in left."""
+    new_bst.insert(30)
+    new_bst.insert(35)
+    new_bst.insert(25)
+    assert new_bst.balance() == 2
+    assert new_bst.right_depth == 3

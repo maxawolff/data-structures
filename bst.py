@@ -27,17 +27,22 @@ class BST(object):
 
     def insert(self, val):
         """Add a node into the bst."""
+        direction = ''
         if self.head is None:
             new_node = Node(val, depth=1)
             self.head = new_node
             self._depth = 1
             self.nodes.append(new_node)
+            self.left_depth = 1
+            self.right_depth = 1
         current_node = self.head
         if val == self.head.value:
             return
         current_depth = 2
         while True:
             if val < current_node.value:
+                if current_depth == 2:
+                    direction = 'left'
                 if current_node.left:
                     current_node = current_node.left
                     current_depth += 1
@@ -47,8 +52,14 @@ class BST(object):
                     self.nodes.append(new_node)
                     if current_depth > self._depth:
                         self._depth = current_depth
+                    if direction == 'left' and self.left_depth < current_depth:
+                        self.left_depth = current_depth
+                    elif direction == 'right' and self.right_depth < current_depth:
+                        self.right_depth = current_depth
                     return
             elif val > current_node.value:
+                if current_depth == 2:
+                    direction = 'right'
                 if current_node.right:
                     current_node = current_node.right
                     current_depth += 1
@@ -58,6 +69,10 @@ class BST(object):
                     self.nodes.append(new_node)
                     if current_depth > self._depth:
                         self._depth = current_depth
+                    if direction == 'right' and self.right_depth < current_depth:
+                        self.right_depth = current_depth
+                    elif direction == 'left' and self.left_depth < current_depth:
+                        self.left_depth = current_depth
                     return
             elif val == current_node.value:
                 return
@@ -78,3 +93,7 @@ class BST(object):
             return True
         else:
             return False
+
+    def balance(self):
+        """Return balance of tree."""
+        return self.right_depth - self.left_depth
