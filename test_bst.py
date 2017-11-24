@@ -133,3 +133,24 @@ def test_search_several_nodes(bst_d1):
 def test_search_several_nodes_wrong_node(bst_d1):
     """Searching for a node not present returns none."""
     assert bst_d1.search(100000) is None
+
+
+def test_contains_one_node(new_bst):
+    """Search for the one node in a bst."""
+    assert new_bst.contains(20) is True
+
+
+def test_contains_one_node_wrong_value_returns_none(new_bst):
+    """Search for a node not in a bst."""
+    assert new_bst.contains(21) is False
+
+
+def test_contains_several_nodes(bst_d1):
+    """Search one of the nodes in a bst."""
+    assert bst_d1.contains(30) is True
+    assert bst_d1.contains(20) is True
+
+
+def test_contains_several_nodes_wrong_node(bst_d1):
+    """Searching for a node not present returns none."""
+    assert bst_d1.contains(100000) is False

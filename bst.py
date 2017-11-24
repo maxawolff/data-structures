@@ -71,3 +71,10 @@ class BST(object):
     def depth(self):
         """Return the depth of a bst."""
         return self._depth
+
+    def contains(self, val):
+        """Return true if val is a node in bst."""
+        if self.search(val):
+            return True
+        else:
+            return False
