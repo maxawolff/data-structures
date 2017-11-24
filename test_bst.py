@@ -112,3 +112,24 @@ def test_bst_depth_three_nodes_is_3_when_unbalanced(new_bst):
     new_bst.insert(5)
     assert new_bst.depth == 3
     assert new_bst.head.left.right.depth == 3
+
+
+def test_search_one_node(new_bst):
+    """Search for the one node in a bst."""
+    assert new_bst.search(20).value == 20
+
+
+def test_search_one_node_wrong_value_returns_none(new_bst):
+    """Search for a node not in a bst."""
+    assert new_bst.search(21) is None
+
+
+def test_search_several_nodes(bst_d1):
+    """Search one of the nodes in a bst."""
+    assert bst_d1.search(30).value == 30
+    assert bst_d1.search(20).value == 20
+
+
+def test_search_several_nodes_wrong_node(bst_d1):
+    """Searching for a node not present returns none."""
+    assert bst_d1.search(100000) is None
