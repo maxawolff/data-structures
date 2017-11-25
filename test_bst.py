@@ -23,6 +23,26 @@ def bst_d1():
     return b
 
 
+@pytest.fixture
+def big_bst():
+    """."""
+    from bst import BST
+    b = BST()
+    b.insert(20)
+    b.insert(10)
+    b.insert(30)
+    b.insert(5)
+    b.insert(15)
+    b.insert(25)
+    b.insert(40)
+    b.insert(3)
+    b.insert(27)
+    b.insert(33)
+    b.insert(42)
+    b.insert(4)
+    return b
+
+
 def test_node_has_val():
     """."""
     from bst import Node
@@ -210,3 +230,32 @@ def test_balance_unbalanced_right_by_two_four_nodes(new_bst):
     new_bst.insert(25)
     assert new_bst.balance() == 2
     assert new_bst.right_depth == 3
+
+
+def test_breadth_first_empty_bst():
+    """Empty bst should return empty list on traversal."""
+    from bst import BST
+    b = BST()
+    assert b.breadth_first() == []
+
+
+def test_breadth_first_small_bst(bst_d1):
+    """Breadth first should return generator with values in bf order."""
+    gen = bst_d1.breadth_first()
+    a = next(gen)
+    b = next(gen)
+    c = next(gen)
+    assert a == 20 and b == 10 and c == 30
+
+
+def test_breadth_first_large_bst(big_bst):
+    """Breadth first should return generator with values in bf order."""
+    gen = big_bst.breadth_first()
+    values = []
+    while True:
+        try:
+            values.append(next(gen))
+        except StopIteration:
+            return
+    expected_output = [20, 10, 30, 15, 25, 40, 3, 27, 33, 42, 4]
+    assert values == expected_output

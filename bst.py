@@ -97,3 +97,23 @@ class BST(object):
     def balance(self):
         """Return balance of tree."""
         return self.right_depth - self.left_depth
+
+    def breadth_first(self):
+        """Traverse the bst in breadth first order, returns generator."""
+        if not self.head:
+            return []
+        to_visit = []
+        visited = []
+        to_visit.append(self.head)
+        current_node = self.head
+        while to_visit:
+            if current_node.left:
+                to_visit.append(current_node.left)
+            if current_node.right:
+                to_visit.append(current_node.right)
+            visited.append(current_node.value)
+            to_visit.pop(0)
+            # pdb.set_trace()
+            if to_visit:
+                current_node = to_visit[0]
+        return (x for x in visited)
