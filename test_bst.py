@@ -256,6 +256,45 @@ def test_breadth_first_large_bst(big_bst):
         try:
             values.append(next(gen))
         except StopIteration:
-            return
-    expected_output = [20, 10, 30, 15, 25, 40, 3, 27, 33, 42, 4]
+            break
+    expected_output = [20, 10, 30, 5, 15, 25, 40, 3, 27, 33, 42, 4]
+    assert values == expected_output
+
+
+def test_pre_order_large_bst(big_bst):
+    """Pre order should return generator with values in pre order."""
+    gen = big_bst.pre_order()
+    values = []
+    while True:
+        try:
+            values.append(next(gen))
+        except StopIteration:
+            break
+    expected_output = [20, 10, 5, 3, 4, 15, 30, 25, 27, 40, 33, 42]
+    assert values == expected_output
+
+
+def test_in_order_large_bst(big_bst):
+    """In order should return generator with values in order."""
+    gen = big_bst.in_order()
+    values = []
+    while True:
+        try:
+            values.append(next(gen))
+        except StopIteration:
+            break
+    expected_output = [3, 4, 5, 10, 15, 20, 25, 27, 30, 33, 40, 42]
+    assert values == expected_output
+
+
+def test_post_order_large_bst(big_bst):
+    """Post order should return generator with values in post order."""
+    gen = big_bst.post_order()
+    values = []
+    while True:
+        try:
+            values.append(next(gen))
+        except StopIteration:
+            break
+    expected_output = [4, 3, 5, 15, 10, 27, 25, 33, 42, 40, 30, 20]
     assert values == expected_output

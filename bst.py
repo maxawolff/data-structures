@@ -117,3 +117,49 @@ class BST(object):
             if to_visit:
                 current_node = to_visit[0]
         return (x for x in visited)
+
+    def pre_order(self):
+        """Traverse the bst in pre-order, returns generator."""
+        to_visit = []
+        to_visit.append(self.head)
+        current = None
+        while to_visit or current:
+            if not current:
+                current = to_visit.pop()
+            else:
+                yield current.value
+                to_visit.extend([current.right, current.left])
+                current = to_visit.pop()
+
+    def in_order(self):
+        """Traverse the bst in-order, returns generator."""
+        to_visit = []
+        current = self.head
+        while current or to_visit:
+            if current:
+                to_visit.append(current)
+                current = current.left
+            else:
+                current = to_visit.pop()
+                yield current.value
+                current = current.right
+
+    def post_order(self):
+        """Traverse the bst in post_order, returns generator."""
+        to_visit = []
+        current = self.head
+        while current or to_visit:
+            if current:
+                if current.right:
+                    to_visit.append(current.right)
+                to_visit.append(current)
+                current = current.left
+            else:
+                current = to_visit.pop()
+                if to_visit and current.right == to_visit[-1]:
+                    to_visit.pop()
+                    to_visit.append(current)
+                    current = current.right
+                else:
+                    yield current.value
+                    current = None
