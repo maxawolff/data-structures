@@ -1,0 +1,3 @@
+[run]
+include=stack.py,
+        linked_list.py
