@@ -68,6 +68,12 @@
   - depth_first_traversal() O(n^2)
   - breadth_first_traversal() O(n^2)
   - dijkstra() O(n^2)
+- Binary Search Tree
+    - Insert() O(n)
+    - Search() O(n)
+    - Depth() O(1)
+    - Contains O(1)
+    - Balance O(1)
 
 
 
