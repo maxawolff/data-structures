@@ -169,7 +169,11 @@ class BST(object):
                     current = None
 
     def delete(self, val):
-        """Delete a node of a given value from the bst."""
+        """Delete a node of a given value from the bst.
+
+        Replace deleted node with closest number to deleted node
+        left most child of right neighbor, not right neighbor
+        """
         del_node = self.search(val)
         if del_node is None:
             raise ValueError("No node of the given value")
