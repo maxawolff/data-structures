@@ -6,12 +6,13 @@ import pdb
 class Node(object):
     """Node class for binary search tree."""
 
-    def __init__(self, value, left=None, right=None, depth=0):
+    def __init__(self, value, left=None, right=None, depth=0, parent=None):
         """."""
         self.value = value
         self.left = left
         self.right = right
         self.depth = depth
+        self.parent = parent
 
 
 class BST(object):
@@ -38,6 +39,7 @@ class BST(object):
         current_node = self.head
         if val == self.head.value:
             return
+        parent = self.head
         current_depth = 2
         while True:
             if val < current_node.value:
@@ -45,9 +47,10 @@ class BST(object):
                     direction = 'left'
                 if current_node.left:
                     current_node = current_node.left
+                    parent = current_node
                     current_depth += 1
                 else:
-                    new_node = Node(val, depth=current_depth)
+                    new_node = Node(val, depth=current_depth, parent=parent)
                     current_node.left = new_node
                     self.nodes.append(new_node)
                     if current_depth > self._depth:
@@ -62,9 +65,10 @@ class BST(object):
                     direction = 'right'
                 if current_node.right:
                     current_node = current_node.right
+                    parent = current_node
                     current_depth += 1
                 else:
-                    new_node = Node(val, depth=current_depth)
+                    new_node = Node(val, depth=current_depth, parent=parent)
                     current_node.right = new_node
                     self.nodes.append(new_node)
                     if current_depth > self._depth:
@@ -163,3 +167,78 @@ class BST(object):
                 else:
                     yield current.value
                     current = None
+
+    def delete(self, val):
+        """Delete a node of a given value from the bst."""
+        del_node = self.search(val)
+        if del_node is None:
+            raise ValueError("No node of the given value")
+        if del_node == self.head:
+            self.head = del_node.right
+            fld = self._fld(del_node.right)
+            if fld is None:
+                fld = del_node.right
+            fld.left = del_node.left
+            del_node.left.parent = fld
+            return
+        direction = ""
+        if del_node.parent.right is del_node:
+            direction = "right"
+        else:
+            direction = "left"
+        if direction == "right":
+            if del_node.right is None and del_node.left is None:
+                """Del Node has no children."""
+                del_node.parent.right = None
+                del_node.parent = None
+            elif del_node.right and not del_node.left:
+                """Del Node has only right child."""
+                del_node.parent.right = del_node.right
+                del_node.right.parent = del_node.parent
+            elif del_node.left and not del_node.right:
+                """Del Node has only left child."""
+                del_node.parent.right = del_node.left
+                del_node.left.parent = del_node.parent
+            else:
+                """Del Node has both left and right children."""
+                del_node.parent.right = del_node.right
+                del_node.right.parent = del_node.parent
+                fld = self._fld(del_node.right)
+                if fld is None:
+                    fld = del_node.right
+                fld.left = del_node.left
+                del_node.left.parent = fld
+        if direction == "left":
+            if del_node.right is None and del_node.left is None:
+                """Del Node has no children."""
+                del_node.parent.left = None
+                del_node.parent = None
+            elif del_node.right and not del_node.left:
+                """Del Node has only right child."""
+                del_node.parent.left = del_node.right
+                del_node.right.parent = del_node.parent
+            elif del_node.left and not del_node.right:
+                """Del Node has only left child."""
+                del_node.parent.left = del_node.left
+                del_node.left.parent = del_node.parent
+            else:
+                """Del Node has both left and right children."""
+                del_node.parent.left = del_node.right
+                del_node.right.parent = del_node.parent
+                fld = self._fld(del_node.right)
+                if fld is None:
+                    fld = del_node.right
+                fld.left = del_node.left
+                del_node.left.parent = fld
+        self.nodes.remove(del_node)
+
+    def _fld(self, node):
+        """Find the furthers left descendent of a given node."""
+        node = self.search(node.value)
+        if not node:
+            raise ValueError("no node of the given value")
+        fld = None
+        while node.left:
+            fld = node.left
+            node = node.left
+        return fld

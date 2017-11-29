@@ -298,3 +298,75 @@ def test_post_order_large_bst(big_bst):
             break
     expected_output = [4, 3, 5, 15, 10, 27, 25, 33, 42, 40, 30, 20]
     assert values == expected_output
+
+
+def test_delete_value_not_found_raises_error(bst_d1):
+    """Trying to delete a value not in bst should raise error."""
+    with pytest.raises(ValueError):
+        bst_d1.delete(100)
+
+
+def test_parent_pointer_is_correct(big_bst):
+    """Check if new parent pointer points to correct parent node."""
+    node1 = big_bst.search(5)
+    node2 = big_bst.search(10)
+    node3 = big_bst.search(42)
+    node4 = big_bst.search(4)
+    assert node1.parent.value == 10
+    assert node2.parent.value == 20
+    assert node3.parent.value == 40
+    assert node4.parent.value == 3
+
+
+def test_delete_node_has_no_kids(bst_d1):
+    """Delete a node that has no children."""
+    bst_d1.delete(10)
+    assert bst_d1.head.left is None
+    bst_d1.delete(30)
+    assert bst_d1.head.right is None
+
+
+def test_fld(big_bst):
+    """Fld should return the furthest left descendant."""
+    node = big_bst.search(10)
+    assert big_bst._fld(node).value == 3
+    node2 = big_bst.search(30)
+    assert big_bst._fld(node2).value == 25
+
+
+def test_delete_node_has_left_child_only(big_bst):
+    """Delete a node that only has a left child."""
+    big_bst.delete(10)
+    assert big_bst.head.left.value == 15
+    assert big_bst.head.left.left.value == 5
+
+
+def test_delete_head(big_bst):
+    """Deleting the head shouldn't mess things up."""
+    big_bst.delete(20)
+    assert big_bst.head.value == 30
+    old_left = big_bst.search(10)
+    assert old_left.parent == big_bst.search(25)
+
+
+def test_delete_node_has_right_child_only(big_bst):
+    """Delete a node that only has a left child."""
+    big_bst.delete(25)
+    node = big_bst.search(27)
+    assert node.parent.value == 30
+
+
+def test_delete_node_has_both_children(big_bst):
+    """Delete a node that has two children."""
+    big_bst.delete(30)
+    assert big_bst.head.right.value == 40
+    node = big_bst.search(25)
+    assert node.parent.value == 33
+
+
+def test_delete_node_has_both_children_again(big_bst):
+    """Delete a node that has two children."""
+    big_bst.delete(10)
+    assert big_bst.head.left.value == 15
+    node = big_bst.search(5)
+    assert node.parent.value == 15
