@@ -173,6 +173,8 @@ class BST(object):
 
         Replace deleted node with closest number to deleted node
         left most child of right neighbor, not right neighbor
+        rather than a direction, compate parent.value to del_node value
+        update depth before deletion
         """
         del_node = self.search(val)
         if del_node is None:
