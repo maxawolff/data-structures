@@ -2,6 +2,7 @@
 import pytest
 import pdb
 from trie import Node, Trie
+import words
 
 
 @pytest.fixture
@@ -9,6 +10,13 @@ def new_trie():
     """."""
     t = Trie()
     return t
+
+
+@pytest.fixture
+def big_trie():
+    """."""
+    t = Trie()
+
 
 
 def test_node_class_has_correct_values():
