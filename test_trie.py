@@ -32,3 +32,23 @@ def test_insert_one_word_empty_trie(new_trie):
     assert current_node.value == 'l'
     current_node = current_node.children[0]
     assert current_node.value == 'o'
+
+
+def test_inset_two_words_same_first_letter(new_trie):
+    """Insert two words, same starting letter."""
+    new_trie.insert('hello')
+    new_trie.insert('hola')
+    assert len(new_trie.root.children) == 1
+    assert new_trie.root.children[0].children[1].value == 'o'
+
+
+def test_insert_two_words_same_first_three_letters(new_trie):
+    """Insert two nodes with the same first three letters."""
+    new_trie.insert('hello')
+    new_trie.insert('help')
+    e_node = new_trie.root.children[0].children[0]
+    assert len(e_node.children) == 1
+    assert e_node.children[0].value == 'l'
+    assert len(e_node.children[0].children) == 2
+    assert e_node.children[0].children[0].value == 'l'
+    assert e_node.children[0].children[1].value == 'p'

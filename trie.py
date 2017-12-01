@@ -8,6 +8,7 @@ class Node(object):
         """."""
         self.value = value
         self.children = []
+        self.child_values = []
         self.parent = parent
 
 
@@ -23,12 +24,13 @@ class Trie(object):
         """Add a word to the trie tree."""
         current = self.root
         for letter in word:
-            if letter not in current.neighbors:
+            if letter not in current.child_values:
                 node = Node(letter, parent=current)
                 current.children.append(node)
+                current.child_values.append(node.value)
                 current = node
             else:
-                index = current.neighbors.index(letter)
-                current = current.neighbors[index]
+                index = current.child_values.index(letter)
+                current = current.children[index]
         current.children.append(Node('$'))
         self.depth += 1
