@@ -38,7 +38,7 @@ class HashTable(object):
         """Get the value for a given key."""
         if not type(key) == str:
             raise TypeError('key must be a string')
-        bucket = self.hash(key)
+        bucket = self._hash(key)
         try:
             return self.container[bucket][key]
         except KeyError:
