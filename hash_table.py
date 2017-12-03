@@ -1,4 +1,5 @@
 """Implementation of a hash table."""
+import pdb
 
 
 class HashTable(object):
@@ -10,10 +11,12 @@ class HashTable(object):
         self.container = []
         for i in range(0, self.size):
             self.container.append({})
-        if func is None:
-            self.func = self._additive
+        if func is None or func == 'a':
+            self.func = 'a'
+        elif func == 'oat':
+            self.func = 'oat'
         else:
-            self.func = func
+            raise ValueError("please enter a valid hash funcition, see README")
 
     def _additive(self, key):
         """Given a key, perform a hashing algorithm on it."""
@@ -24,7 +27,10 @@ class HashTable(object):
 
     def _hash(self, key):
         """Hash a given key."""
-        bucket = self.func(key)
+        if self.func == 'a':
+            bucket = self._additive(key)
+        elif self.func == 'oat':
+            bucket = self._oat(key)
         return bucket
 
     def set(self, key, val):
@@ -43,3 +49,15 @@ class HashTable(object):
             return self.container[bucket][key]
         except KeyError:
             return None
+
+    def _oat(self, key):
+        """Hash a given key using the one at a time hash."""
+        value = 0
+        for letter in key:
+            value += ord(letter)
+            value += (value << 10)
+            value ^= (value >> 6)
+        value += (value << 3)
+        value ^= (value >> 11)
+        value += (value << 15)
+        return value % self.size
