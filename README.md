@@ -16,6 +16,8 @@
   - Dequeue
   - priority queue
   - binary heap
+  - Hash Table
+  - Trie
 - Method time complexity
 
 - Linked List
@@ -69,16 +71,24 @@
   - breadth_first_traversal() O(n^2)
   - dijkstra() O(n^2)
 - Binary Search Tree
-    - insert() O(n)
-    - search() O(n)
-    - depth() O(1)
-    - contains O(1)
-    - balance O(1)
-    - breadth_first() O(n)
-    - in_order() O(n)
-    - pre_order() O(n)
-    - post_order() O(n)
-
+  - insert() O(n)
+  - search() O(n)
+  - depth() O(1)
+  - contains O(1)
+  - balance O(1)
+  - breadth_first() O(n)
+  - in_order() O(n)
+  - pre_order() O(n)
+  - post_order() O(n)
+  - delete() O(n)
+- Hash Table
+  - get() o(k)
+  - set() o(k)
+  - hash() o(k), where k is the number of characters in the key, I think
+- Trie
+  - Insert() o(n^2)
+  - Contains() o(n^2)
+  - Remove () o(n)
 
 ## Getting Started
 <!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
