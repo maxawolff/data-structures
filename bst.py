@@ -6,13 +6,16 @@ import pdb
 class Node(object):
     """Node class for binary search tree."""
 
-    def __init__(self, value, left=None, right=None, depth=0, parent=None):
+    def __init__(self, value, left=None, right=None, depth=0, parent=None, lsd=0, rsd=0):
         """."""
         self.value = value
         self.left = left
         self.right = right
         self.depth = depth
         self.parent = parent
+        self.left_sub_depth = lsd
+        self.right_sub_depth = rsd
+        self.balance_factor = 0
 
 
 class BST(object):
@@ -248,3 +251,13 @@ class BST(object):
             fld = node.left
             node = node.left
         return fld
+
+    def _adjust_subdepth(self, node):
+        """Adjust the subdepth of all nodes affected by an insertion or deletion."""
+        while node.parent:
+            parent = node.parent
+            if parent.left == node:
+                parent.balance_factor -= 1
+            else:
+                parent.balance += 1
+            node = node.parent
