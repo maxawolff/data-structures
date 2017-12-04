@@ -16,6 +16,8 @@
   - Dequeue
   - priority queue
   - binary heap
+  - Hash Table
+  - Trie
 - Method time complexity
 
 - Linked List
@@ -69,15 +71,25 @@
   - breadth_first_traversal() O(n^2)
   - dijkstra() O(n^2)
 - Binary Search Tree
-    - insert() O(n)
-    - search() O(n)
-    - depth() O(1)
-    - contains O(1)
-    - balance O(1)
-    - breadth_first() O(n)
-    - in_order() O(n)
-    - pre_order() O(n)
-    - post_order() O(n)
+  - insert() O(n)
+  - search() O(n)
+  - depth() O(1)
+  - contains O(1)
+  - balance O(1)
+  - breadth_first() O(n)
+  - in_order() O(n)
+  - pre_order() O(n)
+  - post_order() O(n)
+  - delete() O(n)
+- Hash Table
+  - get() o(k)
+  - set() o(k)
+  - hash() o(k), where k is the number of characters in the key, I think
+- Trie
+  - Insert() o(n^2)
+  - Contains() o(n^2)
+  - Remove () o(n)
+
 
 
 ## Getting Started
@@ -94,7 +106,7 @@
 
 01-01-2001 4:59pm - Added functionality to add and delete some things.
 -->
-<pre>Oct 22 17 1300hrs&ensp;&ensp;-&ensp;&ensp;Init&ensp;&ensp;-  
+<pre>Oct 22 17 1300hrs&ensp;&ensp;-&ensp;&ensp;Init&ensp;&ensp;-
 
 Oct 22 17 1330hrs linked_list.py
                   test_linked_list.py
