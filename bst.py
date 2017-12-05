@@ -282,13 +282,20 @@ class BST(object):
     def _adjust_depth(self, node):
         """Adjust the left or right depth of a given node's sub-tree."""
         if node.parent.left is None or node.parent.right is None:
+            count = 1
             while node.parent:
-                parent = node.parent
-                if parent.left == node:
-                    parent.lsd += 1
-                if parent.right == node:
-                    parent.rsd += 1
+                # parent = node.parent
+                if node.parent.right is None:
+                    node.parent.lsd += 1
+                elif node.parent.left is None:
+                    node.parent.rsd += 1
                 node = node.parent
+        #         if parent.left == node:
+        #             parent.rsd += 1
+        #         if parent.right == node:
+        #             parent.lsd += 1
+        #         node = node.parent
+        #         count += 1
         else:
             if node.parent.right == node:
                 node.parent.rsd += 1

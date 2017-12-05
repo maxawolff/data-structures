@@ -437,5 +437,34 @@ def test_subdepth_works2(new_bst):
     new_bst.insert(10)
     assert new_bst.head.lsd == 2
     assert new_bst.head.rsd == 1
+    assert new_bst.head.balance == -1
     assert new_bst.head.left.lsd == 1
     assert new_bst.head.left.rsd == 1
+
+
+def test_subdepth_works3(new_bst):
+    """Test subdepth updates properly."""
+    new_bst.insert(10)
+    new_bst.insert(30)
+    assert new_bst.head.lsd == 2
+    assert new_bst.head.rsd == 2
+    assert new_bst.head.balance == 0
+
+
+def test_subdepth_works4(bst_d1):
+    """Test subdepth updates properly."""
+    bst_d1.insert(5)
+    assert bst_d1.head.lsd == 3
+    bst_d1.insert(15)
+    assert bst_d1.head.lsd == 3
+    bst_d1.insert(25)
+    assert bst_d1.head.rsd == 3
+    bst_d1.insert(40)
+    assert bst_d1.head.rsd == 3
+    bst_d1.insert(3)
+    assert bst_d1.head.lsd == 4
+    bst_d1.insert(27)
+    assert bst_d1.head.rsd == 4
+    assert bst_d1.head.left.lsd == 3 and bst_d1.head.left.rsd == 2
+    bst_d1.insert(33)
+    assert bst_d1.head.rsd == 4
