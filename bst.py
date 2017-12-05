@@ -263,6 +263,7 @@ class BST(object):
                     parent.balance_factor += 1
                 node = node.parent
                 if node.balance_factor == -2:
+                    pdb.set_trace()
                     self._left_rotation(node)
                     node = node.parent
         else:
