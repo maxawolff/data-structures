@@ -14,6 +14,13 @@ class Node(object):
         self.depth = depth
         self.parent = parent
         self.balance_factor = 0
+        self.lsd = 1  # left sub depth
+        self.rsd = 1
+
+    @property
+    def balance(self):
+        """Return the balance factor."""
+        return self.rsd - self.lsd
 
 
 class BST(object):
@@ -60,7 +67,7 @@ class BST(object):
                         self.left_depth = current_depth
                     elif direction == 'right' and self.right_depth < current_depth:
                         self.right_depth = current_depth
-                    self._adjust_balance_factor(new_node)
+                    self._adjust_depth(new_node)
                     return
             elif val > current_node.value:
                 if current_depth == 2:
@@ -79,7 +86,7 @@ class BST(object):
                         self.right_depth = current_depth
                     elif direction == 'left' and self.left_depth < current_depth:
                         self.left_depth = current_depth
-                    self._adjust_balance_factor(new_node)
+                    self._adjust_depth(new_node)
                     return
             elif val == current_node.value:
                 return
@@ -271,6 +278,22 @@ class BST(object):
                 node.parent.balance_factor -= 1
             else:
                 node.parent.balance_factor += 1
+
+    def _adjust_depth(self, node):
+        """Adjust the left or right depth of a given node's sub-tree."""
+        if node.parent.left is None or node.parent.right is None:
+            while node.parent:
+                parent = node.parent
+                if parent.left == node:
+                    parent.lsd += 1
+                if parent.right == node:
+                    parent.rsd += 1
+                node = node.parent
+        else:
+            if node.parent.right == node:
+                node.parent.rsd += 1
+            else:
+                node.parent.lsd += 1
 
     def _left_rotation(self, node):
         """Perform a left rotation."""

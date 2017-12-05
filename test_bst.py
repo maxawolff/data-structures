@@ -401,17 +401,41 @@ def big_bst():
 #     bst_d1.insert(3)
 
 
-def test_fix_everything(bst_d1):
+# def test_fix_everything(bst_d1):
+#     """."""
+#     bst_d1.insert(5)
+#     bst_d1.insert(15)
+#     bst_d1.insert(25)
+#     bst_d1.insert(40)
+#     bst_d1.insert(3)
+#     bst_d1.insert(27)
+#     bst_d1.insert(33)
+#     for node in bst_d1.nodes:
+#         pdb.set_trace()
+#         print(node.value)
+#         print(node.balance_factor)
+#     pdb.set_trace()
+
+
+def test_balance_as_property():
     """."""
-    bst_d1.insert(5)
-    bst_d1.insert(15)
-    bst_d1.insert(25)
-    bst_d1.insert(40)
-    bst_d1.insert(3)
-    bst_d1.insert(27)
-    bst_d1.insert(33)
-    for node in bst_d1.nodes:
-        pdb.set_trace()
-        print(node.value)
-        print(node.balance_factor)
-    pdb.set_trace()
+    from bst import Node
+    n = Node(10)
+    n.lsd = 3
+    n.rsd = 2
+    assert n.balance == -1
+
+
+def test_subdepth_works(new_bst):
+    """Test subdepth updates properly."""
+    assert new_bst.head.lsd == 1
+    assert new_bst.head.rsd == 1
+
+
+def test_subdepth_works2(new_bst):
+    """Test subdepth updates properly."""
+    new_bst.insert(10)
+    assert new_bst.head.lsd == 2
+    assert new_bst.head.rsd == 1
+    assert new_bst.head.left.lsd == 1
+    assert new_bst.head.left.rsd == 1
