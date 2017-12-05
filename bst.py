@@ -6,15 +6,13 @@ import pdb
 class Node(object):
     """Node class for binary search tree."""
 
-    def __init__(self, value, left=None, right=None, depth=0, parent=None, lsd=0, rsd=0):
+    def __init__(self, value, left=None, right=None, depth=0, parent=None):
         """."""
         self.value = value
         self.left = left
         self.right = right
         self.depth = depth
         self.parent = parent
-        self.left_sub_depth = lsd
-        self.right_sub_depth = rsd
         self.balance_factor = 0
 
 
@@ -62,6 +60,7 @@ class BST(object):
                         self.left_depth = current_depth
                     elif direction == 'right' and self.right_depth < current_depth:
                         self.right_depth = current_depth
+                    self._adjust_balance_factor(new_node)
                     return
             elif val > current_node.value:
                 if current_depth == 2:
@@ -80,6 +79,7 @@ class BST(object):
                         self.right_depth = current_depth
                     elif direction == 'left' and self.left_depth < current_depth:
                         self.left_depth = current_depth
+                    self._adjust_balance_factor(new_node)
                     return
             elif val == current_node.value:
                 return
@@ -252,12 +252,34 @@ class BST(object):
             node = node.left
         return fld
 
-    def _adjust_subdepth(self, node):
-        """Adjust the subdepth of all nodes affected by an insertion or deletion."""
-        while node.parent:
-            parent = node.parent
-            if parent.left == node:
-                parent.balance_factor -= 1
+    def _adjust_balance_factor(self, node):
+        """Adjust the balance factor of all nodes affected by an insertion or deletion."""
+        if node.parent.left is None or node.parent.right is None:
+            while node.parent:
+                parent = node.parent
+                if parent.left == node:
+                    parent.balance_factor -= 1
+                else:
+                    parent.balance_factor += 1
+                node = node.parent
+                if node.balance_factor == -2:
+                    self._left_rotation(node)
+                    node = node.parent
+        else:
+            if node.parent.left == node:
+                node.parent.balance_factor -= 1
             else:
-                parent.balance += 1
-            node = node.parent
+                node.parent.balance_factor += 1
+
+    def _left_rotation(self, node):
+        """Perform a left rotation."""
+        parent = node.parent
+        child = node.left
+        gc = child.left
+        parent.left = child
+        child.parent = parent
+        node.parent = child
+        node.left = None
+        node.balance_factor = 0
+        child.balance_factor = 0
+        gc.balance_factor = 0

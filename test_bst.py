@@ -370,3 +370,38 @@ def test_delete_node_has_both_children_again(big_bst):
     assert big_bst.head.left.value == 15
     node = big_bst.search(5)
     assert node.parent.value == 15
+
+
+def test_balance_factor_after_insert(new_bst):
+    """Test method for adjusting balance factor."""
+    assert new_bst.head.balance_factor == 0
+    new_bst.insert(10)
+    assert new_bst.head.balance_factor == -1
+    assert new_bst.head.left.balance_factor == 0
+
+
+def test_balance_factor_after_insert2(new_bst):
+    """Test method for adjusting balance factor."""
+    new_bst.insert(10)
+    new_bst.insert(30)
+    assert new_bst.head.balance_factor == 0
+    assert new_bst.head.right.balance_factor == 0
+
+
+def test_balance_factor_off_by_2(new_bst):
+    """Test that balance gets properly changed."""
+    new_bst.insert(10)
+    new_bst.insert(5)
+    assert new_bst.head.balance_factor == -2
+
+
+def test_autobalance_left_rotation(bst_d1):
+    """Check if a left rotation happens correctly."""
+    bst_d1.insert(5)
+    bst_d1.insert(3)
+
+
+def test_fix_everything(bst_d1):
+    """."""
+    bst_d1.insert(5)
+    bst_d1.insert(15)
