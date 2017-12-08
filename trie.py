@@ -5,7 +5,7 @@ import pdb
 class Node(object):
     """Node class for trie tree."""
 
-    def __init__(self, value, children=None, parent=None):
+    def __init__(self, value, parent=None):
         """."""
         self.value = value
         self.children = []
@@ -16,7 +16,7 @@ class Node(object):
 class Trie(object):
     """Trie tree."""
 
-    def __init__(self, iterable=None):
+    def __init__(self):
         """Initiate a trie."""
         self.root = Node('*')
         self._size = 0
@@ -71,7 +71,7 @@ class Trie(object):
                 current_node = current_node.children[index]
                 to_delete.append(current_node)
             else:
-                raise ValueError("That word is not in the trie, therefor it can't be deleted")
+                raise ValueError("That word is not in the trie, therefore it can't be deleted")
         to_delete.reverse()
         for node in to_delete:
             if len(node.children) == 0:
