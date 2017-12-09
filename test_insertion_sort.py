@@ -29,3 +29,10 @@ def test_insertion_sort_works_alphabetically():
     l = ["a", "b", "c", "d", "e"]
     sorted_l = insertion_sort(l)
     assert l == sorted_l
+
+
+def test_insertion_sort_works_alphabetically_backwards_list():
+    """Does this work with strings."""
+    l = ["e", "d", "c", "b", "a"]
+    sorted_l = insertion_sort(l)
+    assert l[::-1] == sorted_l
