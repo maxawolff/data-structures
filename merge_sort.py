@@ -5,14 +5,14 @@ final_list = []
 
 def merge_sort(l):
     """."""
-    l_copy = l[::]
-    length = len(l_copy)
-    while length > 4:
-        length /= 2
-        length = int(length)
-    container = []
-    for i in range(0, len(l_copy), length):
-        container.append(l_copy[i:i+length])
+    half = int(len(l) / 2)
+    l1 = l[0:half]
+    l2 = l[half:]
+    if len(l1) > 1:
+        l1 = merge_sort(l1)
+    if len(l2) > 1:
+        l2 = merge_sort(l2)
+    return _sort(l1, l2)
 
 
 def _sort(l1, l2):
