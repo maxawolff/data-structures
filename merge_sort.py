@@ -4,7 +4,7 @@ final_list = []
 
 
 def merge_sort(l):
-    """."""
+    """Sort a list using merge sort."""
     half = int(len(l) / 2)
     l1 = l[0:half]
     l2 = l[half:]
@@ -16,7 +16,7 @@ def merge_sort(l):
 
 
 def _sort(l1, l2):
-    """Sort two lists of lenght 1 or 2."""
+    """Take two sorted lists and merge them together."""
     return_list = []
     while l1 or l2:
         if l1[0] > l2[0]:
