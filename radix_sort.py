@@ -16,13 +16,15 @@ def radix_sort(input):
     for num in input:
         str_num = str(num)
         str_num_list = []
+        for digit in str_num:
+            str_num_list.append(int(digit))
+        str_num_list = str_num_list[::-1]
         for i in range(0, length):
             try:
-                str_num_list.append(int(str_num[i]))
+                str_num_list[i]
             except IndexError:
                 str_num_list.append(0)
         container.append(str_num_list)
-    pdb.set_trace()
     for i in range(0, length):
         bucket_list = []
         for j in range(0, 10):
@@ -37,4 +39,12 @@ def radix_sort(input):
             bucket.dequeue()
             while bucket:
                 container.append(bucket.dequeue())
-    return container
+    return_list = []
+    for num_list in container:
+        multiplier = 1
+        number = 0
+        for num in num_list:
+            number += (num * multiplier)
+            multiplier *= 10
+        return_list.append(number)
+    return return_list
