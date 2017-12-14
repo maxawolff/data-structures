@@ -92,7 +92,7 @@ class Trie(object):
             raise ValueError("start point must be a string")
         current_node = self.root
         for letter in start:
-            if letter == '*' and current_node.value == self.root:
+            if letter == '*' and current_node == self.root:
                 break
             if letter not in current_node.child_values:
                 raise ValueError("that sequence of letters is not in the tree")
@@ -108,7 +108,7 @@ class Trie(object):
                 current_node = to_visit.pop()
             else:
                 # pdb.set_trace()
-                if current_node.value != '$':
+                if current_node.value != '$' and current_node.value != '*':
                     yield current_node.value
                     values.append(current_node.value)
                 for node in current_node.children:

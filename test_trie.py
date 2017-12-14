@@ -226,7 +226,7 @@ def test_traversal_given_other_first_letter(small_trie):
             values.append(next(gen))
         except StopIteration:
             break
-    assert values == ['h', 'e', 'l', 'l', 'o', 'a', 'l', 't', 'f' 'w', 'a', 'y']
+    assert values == ['h', 'e', 'l', 'l', 'o', 'a', 'l', 't', 'f', 'w', 'a', 'y']
 
 
 def test_traversal_whole_trie(small_trie):
@@ -238,4 +238,4 @@ def test_traversal_whole_trie(small_trie):
             values.append(next(gen))
         except StopIteration:
             break
-    assert values == ['h', 'e', 'l', 'l', 'o', 'a', 'l', 't', 'f' 'w', 'a', 'y']
+    assert values == ['h', 'e', 'l', 'l', 'o', 'a', 'l', 't', 'f', 'w', 'a', 'y', 'a', 'p', 'p', 'l', 'e', 's', 'e']
