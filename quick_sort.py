@@ -1,6 +1,6 @@
 """Quick sort."""
 
-sorted = []
+done = []
 
 
 def quick_sort(input, start, end):
@@ -21,9 +21,11 @@ def quick_sort(input, start, end):
             left = right
             right += 1
     input[start], input[left] = input[left], input[start]
+    done.append(left)
     return input
 
 
 def qs(input):
     """Run quick sort as much as neccesary."""
-    pass
+    if not done:
+        quick_sort(input, 0, 10)
