@@ -18,6 +18,12 @@
   - binary heap
   - Hash Table
   - Trie
+-Sorting Algorithms
+  - bubble sort
+  - insertion sort
+  - merge sort
+  - quick sort
+  - radix sort
 - Method time complexity
 
 - Linked List
@@ -89,6 +95,7 @@
   - Insert() o(n^2)
   - Contains() o(n^2)
   - Remove () o(n)
+  - traversal() o(n)
 
 
 
