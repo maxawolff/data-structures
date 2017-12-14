@@ -12,6 +12,21 @@ def new_trie():
 
 
 @pytest.fixture
+def small_trie():
+    """."""
+    t = Trie()
+    t.insert("ape")
+    t.insert("apple")
+    t.insert("app")
+    t.insert("apples")
+    t.insert("halfway")
+    t.insert("half")
+    t.insert("halt")
+    t.insert("hello")
+    return t
+
+
+@pytest.fixture
 def big_trie():
     """."""
     t = Trie()
@@ -175,3 +190,52 @@ def test_add_duplicate_word(new_trie):
     new_trie.insert('hello')
     assert new_trie.size() == 1
     assert len(new_trie.root.children) == 1
+
+
+# def test_traverse_finds_end_of_start_word(big_trie):
+#     """Test traverse finds starting point."""
+#     assert big_trie.traversal('hel') == 'l'
+
+
+# def test_traversal_errors_word_not_in_trie(new_trie):
+#     """Should raise a value error when start not in trie."""
+#     new_trie.insert("hello")
+#     gen = new_trie.traversal('a')
+#     with pytest.raises(ValueError):
+#         next(gen)
+
+
+def test_traversal_given_one_letter(small_trie):
+    """Should return all of the letters after the given letter."""
+    gen = small_trie.traversal('a')
+    values = []
+    while True:
+        try:
+            values.append(next(gen))
+        except StopIteration:
+            break
+    assert values == ['a', 'p', 'p', 'l', 'e', 's', 'e']
+
+
+def test_traversal_given_other_first_letter(small_trie):
+    """Should return all of the letters after the given letter."""
+    gen = small_trie.traversal('h')
+    values = []
+    while True:
+        try:
+            values.append(next(gen))
+        except StopIteration:
+            break
+    assert values == ['h', 'e', 'l', 'l', 'o', 'a', 'l', 't', 'f' 'w', 'a', 'y']
+
+
+def test_traversal_whole_trie(small_trie):
+    """Should return all of the letters after the given letter."""
+    gen = small_trie.traversal('*')
+    values = []
+    while True:
+        try:
+            values.append(next(gen))
+        except StopIteration:
+            break
+    assert values == ['h', 'e', 'l', 'l', 'o', 'a', 'l', 't', 'f' 'w', 'a', 'y']

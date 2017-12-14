@@ -85,3 +85,36 @@ class Trie(object):
     def size(self):
         """Get size of a trie."""
         return self._size
+
+    def traversal(self, start):
+        """Perform a depth first traversal on a trie."""
+        if not isinstance(start, str):
+            raise ValueError("start point must be a string")
+        current_node = self.root
+        for letter in start:
+            if letter == '*' and current_node.value == self.root:
+                break
+            if letter not in current_node.child_values:
+                raise ValueError("that sequence of letters is not in the tree")
+            else:
+                index = current_node.child_values.index(letter)
+                current_node = current_node.children[index]
+        to_visit = []
+        to_visit.append(current_node)
+        current_node = None
+        values = []
+        while current_node or to_visit:
+            if not current_node:
+                current_node = to_visit.pop()
+            else:
+                # pdb.set_trace()
+                if current_node.value != '$':
+                    yield current_node.value
+                    values.append(current_node.value)
+                for node in current_node.children:
+                    to_visit.append(node)
+                # to_visit.extend([current_node.right, current_node.left])
+                if to_visit:
+                    current_node = to_visit.pop()
+                else:
+                    current_node = None
