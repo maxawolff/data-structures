@@ -191,3 +191,9 @@ def test_remove_for_head_val(new_dll):
     new_dll.push(3)
     new_dll.remove(3)
     assert new_dll.head.val == 2
+
+
+def test_remove_on_empty_list(new_dll):
+    """Should raise appropriate error for deleting from empty dll."""
+    with pytest.raises(IndexError):
+        new_dll.remove(4)

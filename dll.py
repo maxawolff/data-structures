@@ -75,6 +75,6 @@ class DLL(LinkedList):
                     current.next_node.prev_node = current.prev_node
                 else:
                     self.head = current.next_node
-                    current.next_node.prev = None
+                    current.next_node.prev_node = None
             current = current.next_node
         self.length -= 1
