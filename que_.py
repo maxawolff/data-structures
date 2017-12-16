@@ -21,4 +21,6 @@ class Queue(DLL):
 
     def peek(self):
         """Return the value of the first item in queue."""
+        if not self.head:
+            return None
         return self.head.val

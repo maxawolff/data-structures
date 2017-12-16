@@ -90,3 +90,8 @@ def test_que_size(new_queue):
 def test_que_size_empty(new_queue):
     """Test_que_size."""
     assert new_queue.size() == 0
+
+
+def test_peek_empty_queue_returns_none(new_queue):
+    """Peek should retrun noen when called on an empty queue."""
+    assert new_queue.peek() is None
