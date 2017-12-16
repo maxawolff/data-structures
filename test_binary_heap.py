@@ -120,13 +120,13 @@ def test_heap_pop_always_sorted_order(new_bin):
     assert all_popped == sorted(random_nums, reverse=False)
 
 
-def test_heap_takes_itterable_on_init():
+def test_heap_takes_iterable_on_init():
     """Test that heap can take an iterable."""
     bh = Binheap([1, 2, 3])
     assert bh.container == [1, 2, 3]
 
 
-def test_heap_takes_itterable_on_init_wrong_order():
+def test_heap_takes_iterable_on_init_wrong_order():
     """Test that heap can take an iterable."""
     bh = Binheap([15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1])
     assert bh.container[0] == 1
