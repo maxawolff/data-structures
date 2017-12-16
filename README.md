@@ -41,6 +41,10 @@
   - append() O(1)
   - shift() O(1)
   - remove() O(n)
+
+- Doubly vs Singly linked list:
+  - The singly linked list is useful when you are concerned about memory, as you have one less pointer for each node. If you only need to traverse, add, or delete from the front of the list, then this would be a good choice. It is also simpler to implement.
+  - A doubly linked list has several advantages and a few disadvantages. It keeps a previous pointer, so you can traverse from tail to head. You can also delete or append to the tail as well as the head. It requires more space however because of the additional pointer and it is more complex to implement. If you aren't conecrned with space, and will need to traverse through the list, this seems like the better choice.
 - Stack
   - push() O(1)
   - pop() O(1)
