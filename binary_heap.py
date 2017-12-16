@@ -1,13 +1,16 @@
-"""Implementation of binary search tree."""
+"""Implementation of binary search tree, this is a min heap."""
 
 
 class Binheap(object):
-    """Binary search tree."""
+    """Min Binary Heap."""
 
-    def __init__(self):
+    def __init__(self, iterable=None):
         """."""
         self.container = []
         self._tailidx = -1
+        if iterable:
+            for val in iterable:
+                self.push(val)
 
     def push(self, val):
         """Add new value."""

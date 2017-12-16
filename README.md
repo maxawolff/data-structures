@@ -64,7 +64,7 @@
   - peek() O(1)
   - insert() O(1)
   - pop() O(1)
-- Binary Heap
+- Binary Heap (this is an implementation of a min heap)
   - push() O(log(n))
   - pop() O(log(n))
 - Graph
