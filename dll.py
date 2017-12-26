@@ -66,7 +66,7 @@ class DLL(LinkedList):
     def remove(self, val):
         """Remove selected node."""
         if not self.head and not self.tail:
-            raise IndexError("List is empty")
+            raise ValueError("That value is not in the doubly linked list, also the list is empty")
         current = self.head
         while current:
             if current.val == val:
@@ -74,7 +74,7 @@ class DLL(LinkedList):
                     current.prev_node.next_node = current.next_node
                     current.next_node.prev_node = current.prev_node
                 else:
-                    self.of correct typehead = current.next_node
+                    self.head = current.next_node
                     current.next_node.prev_node = None
             current = current.next_node
             if current is None:
