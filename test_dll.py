@@ -206,4 +206,4 @@ def test_remove_only_element(new_dll):
     new_dll.push(4)
     new_dll.remove(4)
     assert new_dll.head is None
-    assert new_dll.head is None
+    assert new_dll.tail is None

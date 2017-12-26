@@ -79,7 +79,10 @@ class DLL(LinkedList):
                     current.next_node.prev_node = current.prev_node
                 else:
                     self.head = current.next_node
-                    current.next_node.prev_node = None
+                    if self.head is None:
+                        self.tail = None
+                    else:
+                        current.next_node.prev_node = None
             current = current.next_node
         if not found:
             raise ValueError("that value is not in the doubly linked list")
