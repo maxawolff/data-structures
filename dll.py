@@ -1,6 +1,7 @@
 """Implementation of double linked list."""
 
 from linked_list import LinkedList, Node
+import pdb
 
 
 class DLL(LinkedList):
@@ -65,11 +66,14 @@ class DLL(LinkedList):
 
     def remove(self, val):
         """Remove selected node."""
+        found = False
         if not self.head and not self.tail:
             raise ValueError("That value is not in the doubly linked list, also the list is empty")
         current = self.head
         while current:
+            # pdb.set_trace()
             if current.val == val:
+                found = True
                 if current.prev_node:
                     current.prev_node.next_node = current.next_node
                     current.next_node.prev_node = current.prev_node
@@ -77,6 +81,6 @@ class DLL(LinkedList):
                     self.head = current.next_node
                     current.next_node.prev_node = None
             current = current.next_node
-            if current is None:
-                raise ValueError("that value is not in the doubly linked list")
+        if not found:
+            raise ValueError("that value is not in the doubly linked list")
         self.length -= 1

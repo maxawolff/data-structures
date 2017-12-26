@@ -3,6 +3,7 @@
 import pytest
 from dll import DLL
 from linked_list import Node
+import pdb
 
 
 @pytest.fixture
@@ -93,6 +94,7 @@ def test_remove_node_from_list(new_dll):
     new_dll.push(3)
     new_dll.push(2)
     new_dll.push(1)
+    # pdb.set_trace()
     new_dll.remove(2)
     assert new_dll.tail.prev_node.val == 1
 
@@ -137,7 +139,7 @@ def test_shift_removes_tail(new_dll):
 
 def test_remove_no_value_raise_error(new_dll):
     """Remove on empty dll should raise exception."""
-    with pytest.raises(IndexError):
+    with pytest.raises(ValueError):
         new_dll.remove(2)
 
 
@@ -195,5 +197,13 @@ def test_remove_for_head_val(new_dll):
 
 def test_remove_on_empty_list(new_dll):
     """Should raise appropriate error for deleting from empty dll."""
-    with pytest.raises(IndexError):
+    with pytest.raises(ValueError):
         new_dll.remove(4)
+
+
+def test_remove_only_element(new_dll):
+    """test that removing the only element works as intended."""
+    new_dll.push(4)
+    new_dll.remove(4)
+    assert new_dll.head is None
+    assert new_dll.head is None
