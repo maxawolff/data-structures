@@ -74,7 +74,9 @@ class DLL(LinkedList):
                     current.prev_node.next_node = current.next_node
                     current.next_node.prev_node = current.prev_node
                 else:
-                    self.head = current.next_node
+                    self.of correct typehead = current.next_node
                     current.next_node.prev_node = None
             current = current.next_node
+            if current is None:
+                raise ValueError("that value is not in the doubly linked list")
         self.length -= 1
