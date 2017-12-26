@@ -76,10 +76,13 @@ class DLL(LinkedList):
                 found = True
                 if current.prev_node:
                     current.prev_node.next_node = current.next_node
-                    current.next_node.prev_node = current.prev_node
+                    if current.next_node:
+                        current.next_node.prev_node = current.prev_node
+                    else:
+                        self.tail = current.prev_node
                 else:
                     self.head = current.next_node
-                    if self.head is None:
+                    if not self.head:
                         self.tail = None
                     else:
                         current.next_node.prev_node = None
