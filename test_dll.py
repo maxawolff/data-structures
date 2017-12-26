@@ -234,3 +234,40 @@ def test_remove_resets_tail_3_nodes(new_dll):
     new_dll.push(6)
     new_dll.remove(4)
     assert new_dll.tail.val == 5
+
+
+def test_remove_middle_3_nodes(new_dll):
+    """Test that removing the only element works as intended."""
+    new_dll.push(4)
+    new_dll.push(5)
+    new_dll.push(6)
+    new_dll.remove(5)
+    assert new_dll.head.val == 6
+    assert new_dll.head.next_node.val == 4
+
+
+def test_remove_resets_head(new_dll):
+    """Test that removing the only element works as intended."""
+    new_dll.push(4)
+    new_dll.push(5)
+    new_dll.remove(5)
+    assert new_dll.head.val == 4
+    assert new_dll.tail.val == 4
+
+
+def test_remove_resets_head_2(new_dll):
+    """Test that removing the only element works as intended."""
+    new_dll.push(4)
+    new_dll.push(5)
+    new_dll.remove(5)
+    assert new_dll.head.next_node is None
+    assert new_dll.head.prev_node is None
+
+
+def test_remove_resets_head_3_nodes(new_dll):
+    """Test that removing the only element works as intended."""
+    new_dll.push(4)
+    new_dll.push(5)
+    new_dll.push(6)
+    new_dll.remove(6)
+    assert new_dll.head.val == 5
