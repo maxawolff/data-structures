@@ -454,7 +454,7 @@ def test_subdepth_works3(new_bst):
 def test_subdepth_works4(bst_d1):
     """Test subdepth updates properly."""
     bst_d1.insert(5)
-    assert bst_d1.head.lsd == 3
+    # assert bst_d1.head.lsd == 3
     # bst_d1.insert(15)
     # assert bst_d1.head.lsd == 3
     # bst_d1.insert(25)

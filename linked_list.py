@@ -75,9 +75,7 @@ class LinkedList(object):
 class Node(object):
     """Class for node."""
 
-    def __init__(self, val, next_node=None, prev_node=None, priority=0):
+    def __init__(self, val, next_node=None):
         """Create a new node."""
         self.val = val
         self.next_node = next_node
-        self.prev_node = prev_node
-        self.priority = priority

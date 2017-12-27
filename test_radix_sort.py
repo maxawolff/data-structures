@@ -12,7 +12,6 @@ def test_num_itterations():
     """Test some stuff."""
     input = [3221, 1, 10, 9680, 577, 9420, 7, 5622, 4793, 2030]
     test = radix_sort(input)
-    import pdb; pdb.set_trace()
 
 
 # def test_num_itterations_different_value():
