@@ -1,6 +1,6 @@
 """Implementation of double linked list."""
 
-from linked_list import LinkedList, Node
+from linked_list import LinkedList
 import pdb
 
 
@@ -90,3 +90,14 @@ class DLL(LinkedList):
         if not found:
             raise ValueError("that value is not in the doubly linked list")
         self.length -= 1
+
+
+class Node(object):
+    """Class for node."""
+
+    def __init__(self, val, next_node=None, prev_node=None, priority=0):
+        """Create a new node."""
+        self.val = val
+        self.next_node = next_node
+        self.prev_node = prev_node
+        self.priority = priority
