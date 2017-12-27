@@ -106,3 +106,13 @@ def test_popleft_from_empty_deque(dq):
     """Test_pop_from_deque_1_item."""
     with pytest.raises(ValueError):
         dq.popleft()
+
+
+def test_peekleft_empty(dq):
+    """Return none since no items in deque."""
+    assert dq.peekleft() is None
+
+
+def test_peek_empty(dq):
+    """Return none since no items in deque."""
+    assert dq.peek() is None

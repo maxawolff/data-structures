@@ -19,8 +19,14 @@ class Deque(DLL):
 
     def peek(self):
         """Return value of tail."""
-        return self.tail.val
+        if self.tail:
+            return self.tail.val
+        else:
+            return None
 
     def peekleft(self):
         """Return value of head."""
-        return self.head.val
+        if self.head:
+            return self.head.val
+        else:
+            return None
