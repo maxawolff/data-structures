@@ -39,7 +39,7 @@ class DLL(LinkedList):
     def pop(self):
         """Remove and return the head."""
         if self.head is None:
-            raise IndexError("List is empty, cannot pop from an empty list")
+            raise ValueError("List is empty, cannot pop from an empty list")
         val = self.head.val
         if self.head.next_node:
             self.head = self.head.next_node
@@ -53,7 +53,7 @@ class DLL(LinkedList):
     def shift(self):
         """Remove and return the tail."""
         if self.head is None:
-            raise IndexError("List is empty, cannot pop from an empty list")
+            raise ValueError("List is empty, cannot pop from an empty list")
         val = self.tail.val
         if self.tail.prev_node:
             self.tail = self.tail.prev_node

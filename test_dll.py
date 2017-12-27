@@ -168,13 +168,13 @@ def test_shift_removes_tail_next_pointer(new_dll):
 
 def test_pop_empty_dll_raises_error(new_dll):
     """Pop should raise index error on empty dll."""
-    with pytest.raises(IndexError):
+    with pytest.raises(ValueError):
         new_dll.pop()
 
 
 def test_shift_empty_dll_raises_error(new_dll):
     """Pop should raise index error on empty dll."""
-    with pytest.raises(IndexError):
+    with pytest.raises(ValueError):
         new_dll.shift()
 
 
@@ -270,3 +270,17 @@ def test_remove_resets_head_3_nodes(new_dll):
     new_dll.push(6)
     new_dll.remove(6)
     assert new_dll.head.val == 5
+
+
+def test_pop_1_item(new_dll):
+    """Test pop with one item."""
+    new_dll.push(4)
+    new_dll.pop()
+    assert new_dll.head is None
+
+
+def test_shift_1_item(new_dll):
+    """Test pop with one item."""
+    new_dll.push(4)
+    new_dll.shift()
+    assert new_dll.head is None

@@ -33,7 +33,7 @@ def test_pop_removes_tail(dq):
 
 def test_pop_raises_error_with_empty_deque(dq):
     """Raise an index error when pop from empty deque."""
-    with pytest.raises(IndexError):
+    with pytest.raises(ValueError):
         dq.pop()
 
 
@@ -80,3 +80,29 @@ def test_dequeue_len_inherit(dq):
 def test_dequeue_len_empty(dq):
     """Test length of empty dequeue is 0."""
     assert len(dq) == 0
+
+
+def test_pop_from_deque_1_item(dq):
+    """Test_pop_from_deque_1_item."""
+    dq.appendleft(1)
+    dq.pop()
+    assert dq.head is None
+
+
+def test_popleft_from_deque_1_item(dq):
+    """Test_pop_from_deque_1_item."""
+    dq.appendleft(1)
+    dq.popleft()
+    assert dq.head is None
+
+
+def test_pop_from_empty_deque(dq):
+    """Test_pop_from_deque_1_item."""
+    with pytest.raises(ValueError):
+        dq.pop()
+
+
+def test_popleft_from_empty_deque(dq):
+    """Test_pop_from_deque_1_item."""
+    with pytest.raises(ValueError):
+        dq.popleft()
