@@ -314,3 +314,7 @@ class BST(object):
         node.balance_factor = 0
         child.balance_factor = 0
         gc.balance_factor = 0
+
+    def size(self):
+        """Return the size of the tree."""
+        return len(self.nodes)
