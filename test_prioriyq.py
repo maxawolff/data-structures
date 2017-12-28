@@ -124,10 +124,46 @@ def test_pq_pop(pq):
     assert pq.pop() == 2
 
 
-def test_list_pop_2(pq):
+def test_pq_pop_2(pq):
     """Pop should remove queue from list if queue becomes empty afetr pop."""
     pq.insert(1, 1)
     pq.insert(2, 5)
     pq.pop()
     # pdb.set_trace()
     assert len(pq._priority) == 1
+
+
+def test_pq_pop_again(pq):
+    """Pop should return highest priority, first inserted."""
+    pq.insert('a', 1)
+    pq.insert('b', 5)
+    pq.insert('c', 3)
+    pq.insert('d', 1)
+    assert pq.pop() == 'b'
+    assert pq.pop() == 'c'
+    assert pq.pop() == 'a'
+    assert pq.pop() == 'd'
+    with pytest.raises(IndexError):
+        pq.pop()
+
+
+def test_pq_pop_once_more(pq):
+    """Pop should return highest priority, first inserted."""
+    pq.insert('a', 1)
+    pq.insert('b', 5)
+    pq.insert('c', 3)
+    assert pq.pop() == 'b'
+    pq.insert('d', 2)
+    assert pq.pop() == 'c'
+    assert pq.pop() == 'd'
+    assert pq.pop() == 'a'
+    with pytest.raises(IndexError):
+        pq.pop()
+
+
+def test_pq_pop_empty_then_one_item(pq):
+    """Pop should raise error on pop from empty, not when items in pq."""
+    with pytest.raises(IndexError):
+        pq.pop()
+    pq.insert('a', 1)
+    assert pq.pop() == 'a'
