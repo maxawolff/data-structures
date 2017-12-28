@@ -43,6 +43,21 @@ def big_bst():
     return b
 
 
+def test_bst_size_1(new_bst):
+    """Test that size of bst with one node is one."""
+    assert new_bst.size() == 1
+
+
+def test_bst_size_3(bst_d1):
+    """Test that size of bst with three node is three."""
+    assert bst_d1.size() == 3
+
+
+def test_bst_size_12(big_bst):
+    """Test that size of bst with 12 node is 12."""
+    assert big_bst.size() == 12
+
+
 def test_node_has_val():
     """."""
     from bst import Node
