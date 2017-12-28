@@ -218,6 +218,7 @@ def test_graph_weighted_edges():
     g = Graph()
     g.add_edge('a', 'b', 5)
     assert g.edges()[0][2] == 5
+    assert g.edges()[0] == ('a', 'b', 5)
 
 
 def test_graph_weighted_edges_default_to_0():
@@ -225,3 +226,4 @@ def test_graph_weighted_edges_default_to_0():
     g = Graph()
     g.add_edge('a', 'b')
     assert g.edges()[0][2] == 0
+    assert g.edges()[0] == ('a', 'b', 0)
