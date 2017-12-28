@@ -110,7 +110,7 @@ class BST(object):
 
     def balance(self):
         """Return balance of tree."""
-        return self.right_depth - self.left_depth
+        return self.left_depth - self.right_depth
 
     def breadth_first(self):
         """Traverse the bst in breadth first order, returns generator."""

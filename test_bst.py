@@ -211,30 +211,30 @@ def test_balance_balanced_bst(bst_d1):
 
 
 def test_balance_unbalanced_left(new_bst):
-    """Should have -1 balanced since depth higher in left."""
+    """Should have 1 balance since depth higher in left."""
     new_bst.insert(10)
-    assert new_bst.balance() == -1
-
-
-def test_balance_unbalanced_right(new_bst):
-    """Should have -1 balanced since depth higher in left."""
-    new_bst.insert(30)
     assert new_bst.balance() == 1
 
 
+def test_balance_unbalanced_right(new_bst):
+    """Should have -1 balance since depth higher in right."""
+    new_bst.insert(30)
+    assert new_bst.balance() == -1
+
+
 def test_balance_unbalanced_right_by_two(new_bst):
-    """Should have -1 balanced since depth higher in left."""
+    """Should have -2 balance since depth higher in left."""
     new_bst.insert(30)
     new_bst.insert(35)
-    assert new_bst.balance() == 2
+    assert new_bst.balance() == -2
 
 
 def test_balance_unbalanced_right_by_three(new_bst):
-    """Should have -1 balanced since depth higher in left."""
+    """Should have -3 balance since depth higher in left."""
     new_bst.insert(30)
     new_bst.insert(35)
     new_bst.insert(32)
-    assert new_bst.balance() == 3
+    assert new_bst.balance() == -3
     assert new_bst.right_depth == 4
 
 
@@ -243,7 +243,7 @@ def test_balance_unbalanced_right_by_two_four_nodes(new_bst):
     new_bst.insert(30)
     new_bst.insert(35)
     new_bst.insert(25)
-    assert new_bst.balance() == 2
+    assert new_bst.balance() == -2
     assert new_bst.right_depth == 3
 
 
