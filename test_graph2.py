@@ -211,3 +211,17 @@ def test_remove_edge_also_removes_neighbors():
     node1 = ng._nodes[0]
     ng.del_edge(1, 2)
     assert node1.neighbors == []
+
+
+def test_graph_weighted_edges():
+    """Test weighted edges are correctly implemented."""
+    g = Graph()
+    g.add_edge('a', 'b', 5)
+    assert g.edges()[0][2] == 5
+
+
+def test_graph_weighted_edges_default_to_0():
+    """Test weighted edges are correctly implemented."""
+    g = Graph()
+    g.add_edge('a', 'b')
+    assert g.edges()[0][2] == 0
