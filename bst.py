@@ -115,9 +115,8 @@ class BST(object):
     def breadth_first(self):
         """Traverse the bst in breadth first order, returns generator."""
         if not self.head:
-            return []
+            yield
         to_visit = []
-        visited = []
         to_visit.append(self.head)
         current_node = self.head
         while to_visit:
@@ -125,12 +124,11 @@ class BST(object):
                 to_visit.append(current_node.left)
             if current_node.right:
                 to_visit.append(current_node.right)
-            visited.append(current_node.value)
+            yield current_node.value
             to_visit.pop(0)
             # pdb.set_trace()
             if to_visit:
                 current_node = to_visit[0]
-        return (x for x in visited)
 
     def pre_order(self):
         """Traverse the bst in pre-order, returns generator."""

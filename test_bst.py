@@ -251,7 +251,8 @@ def test_breadth_first_empty_bst():
     """Empty bst should return empty list on traversal."""
     from bst import BST
     b = BST()
-    assert b.breadth_first() == []
+    gen = b.breadth_first()
+    assert next(gen) is None
 
 
 def test_breadth_first_small_bst(bst_d1):
