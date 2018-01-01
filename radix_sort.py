@@ -6,7 +6,7 @@ import pdb
 def radix_sort(input):
     """Sort a list using radix sort."""
     if not isinstance(input, list):
-        raise TypeError("I only take lists dawg, gimme a list as input")
+        raise TypeError("Input must be a list")
     container = []
     largest = -1
     for num in input:

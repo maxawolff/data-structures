@@ -6,7 +6,7 @@ done = []
 def quick_sort(input):
     """Sort a list using the quick sort algorith."""
     if not isinstance(input, list):
-        raise TypeError("quick sort only works on a list")
+        raise TypeError("input must be a list")
     if len(input) == 1:
         return input
     left = 0

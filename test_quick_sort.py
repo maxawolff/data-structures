@@ -35,7 +35,7 @@ def test_quicksort_in_reversed_order():
 
 
 def test_quicksort_giant_list():
-    """Test quicksort on a big ass list."""
+    """Test quicksort on a very large list."""
     import random
     input = []
     for i in range(1000001):
