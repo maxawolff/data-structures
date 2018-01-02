@@ -62,6 +62,21 @@ def g4():
     return g
 
 
+@pytest.fixture
+def bel():
+    """Graph to use with diskstas algorithm."""
+    g = Graph()
+    g.add_edge('S', 'A', 10)
+    g.add_edge('S', 'E', 8)
+    g.add_edge('A', 'C', 2)
+    g.add_edge('B', 'A', 1)
+    g.add_edge('C', 'B', -2)
+    g.add_edge('D', 'C', -1)
+    g.add_edge('D', 'A', -4)
+    g.add_edge('E', 'D', 1)
+    return g
+
+
 def test_new_emty_graph_nodes(new_graph):
     """Test_new_emty_graph_nodes."""
     assert new_graph._nodes == []
@@ -503,3 +518,8 @@ def test_shortest_path_end_g4bg(g4):
     """."""
     res = g4.dijkstra_end('B', 'G')
     assert res == ['B', 'D', 'G', 15]
+
+
+def test_belman_ford(bel):
+    """."""
+    res = bel.belman_ford('S', 'C')

@@ -249,6 +249,40 @@ class Graph(object):
                 to_visit_values.remove(next_val)
             return shortest_path[end_val]
 
+    def belman_ford(self, start_val, end_val):
+            """Belman-Ford shortest path algorithm with an end value."""
+            from math import inf
+            try:
+                current_node = self.has_node(start_val)
+            except ValueError:
+                return "Start node not in graph"
+            try:
+                self.has_node(end_val)
+            except ValueError:
+                return "End node not in graph"
+            shortest_path = {}
+            for node in self.nodes():
+                shortest_path[node.val] = [current_node.val, inf]
+            shortest_path[start_val] = [start_val, 0]
+            changed = True
+            while changed is True:
+                # changed = False
+                for node in self.nodes():
+                    for edge in node.neighbors:
+                        if edge[0] == node.val:
+                            prev = edge[0].val
+                            to = edge[1].val
+                            old_path = shortest_path[edge[0].val]
+                            path = old_path[0: -1]
+                            part2 = edge[1].val
+                            part3 = old_path[-1] + edge[-1]
+                            path.append(part2)
+                            path.append(part3)
+                            if part3 < shortest_path[edge[1].val][-1]:
+                                shortest_path[edge[1].val] = path
+                                # changed = True
+                            pdb.set_trace()
+
 
 class Node(object):
     """Graph node."""
