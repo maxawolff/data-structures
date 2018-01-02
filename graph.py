@@ -266,12 +266,10 @@ class Graph(object):
             shortest_path[start_val] = [start_val, 0]
             changed = True
             while changed is True:
-                # changed = False
+                changed = False
                 for node in self.nodes():
                     for edge in node.neighbors:
-                        if edge[0] == node.val:
-                            prev = edge[0].val
-                            to = edge[1].val
+                        if edge[0].val == node.val:
                             old_path = shortest_path[edge[0].val]
                             path = old_path[0: -1]
                             part2 = edge[1].val
@@ -280,8 +278,8 @@ class Graph(object):
                             path.append(part3)
                             if part3 < shortest_path[edge[1].val][-1]:
                                 shortest_path[edge[1].val] = path
-                                # changed = True
-                            pdb.set_trace()
+                                changed = True
+            return shortest_path[end_val]
 
 
 class Node(object):
