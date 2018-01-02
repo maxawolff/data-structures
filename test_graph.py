@@ -414,7 +414,7 @@ def test_edge_weight_not_num():
 
 
 def test_dijkstra(dgraph):
-    """."""
+    """Test that the shortest path algorithm returns the correct value."""
     res = dgraph.dijkstra('A')
     assert res['D'] == ['A', 'C', 'B', 'D', 9]
     assert res['A'] == ['A', 0]
@@ -430,96 +430,151 @@ def test_traversal2(dgraph):
 
 
 def test_dijkstra_g3_f(g3):
-    """."""
+    """Test that the shortest path algorithm returns the correct value."""
     res = g3.dijkstra('A')
     assert res['F'] == ['A', 'B', 'E', 'F', 11]
 
 
 def test_dijkstra_g3_e(g3):
-    """."""
+    """Test that the shortest path algorithm returns the correct value."""
     res = g3.dijkstra('A')
     assert res['E'] == ['A', 'B', 'E', 8]
 
 
 def test_dijkstra_g3_d(g3):
-    """."""
+    """Test that the shortest path algorithm returns the correct value."""
     res = g3.dijkstra('A')
     assert res['D'] == ['A', 'C', 'D', 5]
 
 
 def test_dijkstra_g4_g(g4):
-    """."""
+    """Test that the shortest path algorithm returns the correct value."""
     res = g4.dijkstra('A')
     assert res['G'] == ['A', 'E', 'G', 12]
 
 
 def test_dijkstra_g4_f(g4):
-    """."""
+    """Test that the shortest path algorithm returns the correct value."""
     res = g4.dijkstra('A')
     assert res['F'] == ['A', 'E', 'D', 'F', 10]
 
 
 def test_dijkstra_g4_f_start_at_c(g4):
-    """."""
+    """Test that the shortest path algorithm returns the correct value."""
     res = g4.dijkstra('C')
     assert res['F'] == ['C', 'E', 'D', 'F', 11]
 
 
 def test_dijkstra_g4_g_start_at_c(g4):
-    """."""
+    """Test that the shortest path algorithm returns the correct value."""
     res = g4.dijkstra('C')
     assert res['G'] == ['C', 'E', 'G', 13]
 
 
 def test_dijkstra_g4_start_at_c_no_a(g4):
-    """."""
+    """Test that the shortest path algorithm returns the correct value."""
     res = g4.dijkstra('C')
     with pytest.raises(KeyError):
         res["A"]
 
 
 def test_shortest_path_end_ae(g3):
-    """."""
+    """Test that the shortest path algorithm returns the correct value."""
     res = g3.dijkstra_end('A', 'E')
     assert res == ['A', 'B', 'E', 8]
 
 
 def test_shortest_path_end_af(g3):
-    """."""
+    """Test that the shortest path algorithm returns the correct value."""
     res = g3.dijkstra_end('A', 'F')
     assert res == ['A', 'B', 'E', 'F', 11]
 
 
 def test_shortest_path_end_bf(g3):
-    """."""
+    """Test that the shortest path algorithm returns the correct value."""
     res = g3.dijkstra_end('B', 'F')
     assert res == ['B', 'E', 'F', 9]
 
 
 def test_shortest_path_end_be(g3):
-    """."""
+    """Test that the shortest path algorithm returns the correct value."""
     res = g3.dijkstra_end('B', 'D')
     assert res == ['B', 'E', 'D', 7]
 
 
 def test_shortest_path_end_g4ae(g4):
-    """."""
+    """Test that the shortest path algorithm returns the correct value."""
     res = g4.dijkstra_end('A', 'G')
     assert res == ['A', 'E', 'G', 12]
 
 
 def test_shortest_path_end_g4af(g4):
-    """."""
+    """Test that the shortest path algorithm returns the correct value."""
     res = g4.dijkstra_end('A', 'F')
     assert res == ['A', 'E', 'D', 'F', 10]
 
 
 def test_shortest_path_end_g4bg(g4):
-    """."""
+    """Test that the shortest path algorithm returns the correct value."""
     res = g4.dijkstra_end('B', 'G')
     assert res == ['B', 'D', 'G', 15]
 
 
-def test_belman_ford(bel):
-    """."""
+def test_belman_ford1(bel):
+    """Test that the shortest path algorithm returns the correct value."""
     res = bel.belman_ford('S', 'C')
+    assert res[-1] == 7
+
+
+def test_belman_ford2(bel):
+    """Test that the shortest path algorithm returns the correct value."""
+    res = bel.belman_ford('S', 'E')
+    assert res[-1] == 8
+
+
+def test_belman_ford3(bel):
+    """Test that the shortest path algorithm returns the correct value."""
+    res = bel.belman_ford('S', 'B')
+    assert res[-1] == 5
+
+
+def test_shortest_path_bf_end_ae(g3):
+    """Test that the shortest path algorithm returns the correct value."""
+    res = g3.belman_ford('A', 'E')
+    assert res == ['A', 'B', 'E', 8]
+
+
+def test_shortest_path_bf_end_af(g3):
+    """Test that the shortest path algorithm returns the correct value."""
+    res = g3.belman_ford('A', 'F')
+    assert res == ['A', 'B', 'E', 'F', 11]
+
+
+def test_shortest_path_bf_end_bf(g3):
+    """Test that the shortest path algorithm returns the correct value."""
+    res = g3.belman_ford('B', 'F')
+    assert res == ['B', 'E', 'F', 9]
+
+
+def test_shortest_path_bf_end_be(g3):
+    """Test that the shortest path algorithm returns the correct value."""
+    res = g3.belman_ford('B', 'D')
+    assert res == ['B', 'E', 'D', 7]
+
+
+def test_shortest_path_bf_end_g4ae(g4):
+    """Test that the shortest path algorithm returns the correct value."""
+    res = g4.belman_ford('A', 'G')
+    assert res == ['A', 'E', 'G', 12]
+
+
+def test_shortest_path_bf_end_g4af(g4):
+    """Test that the shortest path algorithm returns the correct value."""
+    res = g4.belman_ford('A', 'F')
+    assert res == ['A', 'E', 'D', 'F', 10]
+
+
+def test_shortest_path_bf_end_g4bg(g4):
+    """Test that the shortest path algorithm returns the correct value."""
+    res = g4.belman_ford('B', 'G')
+    assert res == ['B', 'D', 'G', 15]
