@@ -461,3 +461,45 @@ def test_dijkstra_g4_start_at_c_no_a(g4):
     res = g4.dijkstra('C')
     with pytest.raises(KeyError):
         res["A"]
+
+
+def test_shortest_path_end_ae(g3):
+    """."""
+    res = g3.dijkstra_end('A', 'E')
+    assert res == ['A', 'B', 'E', 8]
+
+
+def test_shortest_path_end_af(g3):
+    """."""
+    res = g3.dijkstra_end('A', 'F')
+    assert res == ['A', 'B', 'E', 'F', 11]
+
+
+def test_shortest_path_end_bf(g3):
+    """."""
+    res = g3.dijkstra_end('B', 'F')
+    assert res == ['B', 'E', 'F', 9]
+
+
+def test_shortest_path_end_be(g3):
+    """."""
+    res = g3.dijkstra_end('B', 'D')
+    assert res == ['B', 'E', 'D', 7]
+
+
+def test_shortest_path_end_g4ae(g4):
+    """."""
+    res = g4.dijkstra_end('A', 'G')
+    assert res == ['A', 'E', 'G', 12]
+
+
+def test_shortest_path_end_g4af(g4):
+    """."""
+    res = g4.dijkstra_end('A', 'F')
+    assert res == ['A', 'E', 'D', 'F', 10]
+
+
+def test_shortest_path_end_g4bg(g4):
+    """."""
+    res = g4.dijkstra_end('B', 'G')
+    assert res == ['B', 'D', 'G', 15]

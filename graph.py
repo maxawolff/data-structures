@@ -207,6 +207,48 @@ class Graph(object):
             to_visit_values.remove(next_val)
         return shortest_path
 
+    def dijkstra_end(self, start_val, end_val):
+            """Dijksta shortest path algorithm with an end value."""
+            try:
+                current_node = self.has_node(start_val)
+            except ValueError:
+                return "Start node not in graph"
+            try:
+                self.has_node(end_val)
+            except ValueError:
+                return "End node not in graph"
+            to_visit = self.depth_first_traversal2(current_node.val)
+            shortest_path = {}
+            for node in to_visit:
+                shortest_path[node.val] = [current_node.val, 1000000]
+            shortest_path[current_node.val] = [current_node.val, 0]
+            to_visit.remove(current_node)
+            to_visit_values = []
+            for node in to_visit:
+                to_visit_values.append(node.val)
+            while to_visit:
+                for node in current_node.neighbors:
+                    old_path = shortest_path[current_node.val]
+                    path = old_path[0: -1]
+                    part2 = node[1].val
+                    part3 = old_path[-1] + node[-1]
+                    path.append(part2)
+                    path.append(part3)
+                    if path[-1] < shortest_path[node[1].val][-1]:
+                        shortest_path[node[1].val] = path
+
+                next_path = ['!', 999999]
+                for node in shortest_path:
+                    if shortest_path[node][-1] < next_path[-1] and node in to_visit_values:
+                        next_path = shortest_path[node]
+                next_val = next_path[-2]
+                for node in to_visit:
+                    if node.val == next_val:
+                        current_node = node
+                to_visit.remove(current_node)
+                to_visit_values.remove(next_val)
+            return shortest_path[end_val]
+
 
 class Node(object):
     """Graph node."""
